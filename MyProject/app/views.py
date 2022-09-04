@@ -4,9 +4,15 @@ from django.http import HttpResponse
 
 # Definiujemy co ma nam zwrócić dany widok
 
-def home(request):
-    return HttpResponse('<h1>App Home<h1>')
+def index(request):
+    return render(request, 'index.html')
+
+def profile(request):
+    return render(request, 'profile.html')
 
 def about(request):
-     return HttpResponse('<h1>App About<h1>')
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 

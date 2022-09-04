@@ -1,0 +1,112 @@
+html {
+    scroll-padding-top: 50px; /* height of sticky header */
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/*Navigation Bar*/
+.navbar {
+    width: auto;
+    height: auto;
+}
+.navbar-brand > img {
+    width: 80px;
+    height: 80px;
+}
+.navbar-nav {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: black;
+}
+
+.navbar-light .navbar-nav .nav-item > .nav-link:hover {
+    color: lightgray;
+}
+
+/*Containers*/
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    
+}
+.container-fluid > hr {
+    width: 50%;
+    height: 2px; 
+    background: black; 
+  }
+.container-fluid > h1 {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/*Main*/
+#main {
+    background-image: url("../media/background/wood.jpg");
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+
+}
+
+
+/*About*/
+#about {
+    background-image: url("../media/background/white_bg.jpg");
+    background-size: cover;
+    width:100%;
+    height: 100vh;
+}
+
+#about   #about_block {
+    display: block;
+    max-width: 75%;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+#about img {
+    height: auto;
+    max-width: 40%;
+    float: right;
+}
+
+#about_block {
+    font-size:calc(12px + 1.49vw);
+    background-color: rgba(255, 255, 255, .45);
+}
+#about_block p{
+    margin: 5px;
+}
+/*Contact*/
+#contact {
+    background: #F2994A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+#contact > #wizytowka {
+    background-color: white;
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 3%;
+    text-align: left;
+    -webkit-box-shadow: 12px 18px 49px -3px rgba(0,0,0,0.46);
+    -moz-box-shadow: 12px 18px 49px -3px rgba(0,0,0,0.46);
+    box-shadow: 12px 18px 49px -3px rgba(0,0,0,0.46);
+    border: 1px solid black;
+}
+  
+
+

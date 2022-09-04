@@ -1,9 +1,11 @@
 from django.urls import path
 from . import  views
 
-# Ścieżki z których korzysta główny moduł i
+# Ścieżki z których korzysta główny moduł 
 urlpatterns = [
-    path('', views.home, name='app-home'),
-    path('about/', views.about, name='app-about'),
+    path('', views.index, name='index'),
+    path('profile/', views.profile, name='profile'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     
 ]

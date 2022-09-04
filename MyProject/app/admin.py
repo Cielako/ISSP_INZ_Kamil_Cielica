@@ -1,3 +1,18 @@
 from django.contrib import admin
+from .models import Profile
 
 # Register your models here.
+# Możemy również dowolnie precyzować jak nasz model ma być wyświetlany 
+''' Dajemy znać części administracyjnej Django, że nasz model jest 
+    zarejestrowany używając spersonalizowanej klasy, która dziedziczy
+    z ModelAdmin, można tutaj zamieścić informację jak wyświetlać ten 
+    model na stronie i jak wejść z nim w interakcje
+    
+    admin.site.register(Profile) - domyślne ustawienie strony
+'''
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('pet_name', 'pet_id', 
+                    'pet_desc', 'is_lost',
+                    'phone','email')
