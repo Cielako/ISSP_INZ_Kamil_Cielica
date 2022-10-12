@@ -1,3 +1,4 @@
+from atexit import register
 from django.contrib import admin
 from .models import Profile
 
@@ -13,6 +14,6 @@ from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('pet_name', 'pet_id', 
+    list_display = ('pet_name', 'pet_num', 
                     'pet_desc', 'is_lost',
                     'phone','email')

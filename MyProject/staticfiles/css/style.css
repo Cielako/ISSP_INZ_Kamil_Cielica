@@ -48,18 +48,24 @@ body {
 
 /*Main*/
 #main {
-    background-image: url("../media/background/wood.jpg");
+    /*background-image: url("../media/background/wood.jpg");*/
     width: 100%;
     height: 100vh;
     background-position: center;
     background-size: cover;
-
 }
 
+input{
+background-color: red;
+}
+
+p{
+    color: #F2994A;
+}
 
 /*About*/
 #about {
-    background-image: url("../media/background/white_bg.jpg");
+    /*background-image: url("../media/background/white_bg.jpg");*/
     background-size: cover;
     width:100%;
     height: 100vh;
@@ -94,7 +100,7 @@ body {
     background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
-#contact > #wizytowka {
+#contact {
     background-color: white;
     display: flex;
     flex-flow: row wrap;

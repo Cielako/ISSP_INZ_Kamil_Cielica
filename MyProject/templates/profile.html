@@ -1,3 +1,15 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block title %}Profil{% endblock %}
+
+{% block main %} 
+    {% for item in all %}
+        <img src="../{{item.pet_image}}" width="200px">
+        <p>Numer identyfikacyjny zwierzęcia: {{ item.pet_num }} <br>
+            Imię: {{item.pet_name}} </br>
+            Numer telefonu właściciela: {{item.phone}}</br>
+            Adres e-mail: {{item.email}}</br>
+            Opis: {{item.pet_desc}}
+        </p>
+    {% endfor %}
+{% endblock %}
