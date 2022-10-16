@@ -1,0 +1,79 @@
+# VENV
+Tworzymy wirtulane środowisko - python -m venv env
+Instalujemy wszystkie potrzebne biblioteki pip install -r requirements.txt
+Aktywacja venv - .\env\Scripts\activate   
+Deaktywacja venv - deactivate 
+
+# INSTALUJEMY BIBLIOTEKI
+pip install Django
+pip install windows-curses
+pip install mysqlclient
+pip install django-phonenumber-field[phonenumbers] - do numerów tel
+pip install pillow - do zdjęć
+
+# DJANGO 
+Utworzenie projektu - django-admin startproject MyProject
+Utworzenie aplikacji na serwerze - python manage.py startapp app
+Uruchomienie serwera Django - python MyProject\manage.py runserver
+Wstępna migracja danych ( wrazie gdyby baza się wysypała) -  python MyProject\manage.py makemigrations app
+Migracja danych  - python MyProject\manage.py makemigrations 
+Migracja danych - python MyProject\manage.py migrate
+Zbieramy pliki statyczne - python MyProject\manage.py collectstatic  
+Utworzenie super użytkownika (przechowujemy w bazie danych MySQL)  - python MyProject\manage.py createsuperuser
+
+Routing w naszej aplikaji umożliwia nawigowanie między komponentami 
+aplikacji bez potrzeby przeładowywania jej.
+
+views - plik który odpowiada za renderowanie stron, a raczek określa
+co dokładnie ma zostać wyrenderowane. 
+
+# Tworzymy konto użytkownika dla naszej bazy danych
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '**********';
+grant all on sitedb.* to 'admin'@'localhost';
+
+# Objaśnienie poszczególnych plików w Django 
+views.py - zwraca odpowiednie widoki
+urls.py - odpowiada za mapowanie naszych stron 
+models.py - w tym pliku definiujemy nasze pola i zachowania danych które przechowujemy 
+admin.py - w tym pliku rejestrujemy nasze modele, aby  były widoczne w panelu administracyjnym 
+static -  w tym folderze przechowujemy pliki CSS, JS zdjęcia itp. 
+templates - tutaj przechowujemy pliki html, często zawiera się w nich csrf_token (zabezpieczenie przed niekontrolowanym wykonaniem operacji).
+# Następnie aktualizujemy plik settings.py
+
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'my_database',  
+        'USER': 'root',  
+        'PASSWORD': 'your_password',  
+        'HOST': '127.0.0.1',  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
+} 
+ 
+# Tworzymy nowy obiekt z poziomu shella dla danego użytkownika
+>>> from django.contrib.auth.models import User
+>>> from app.models import Profile
+>>> user = User.objects.get(username='admin')
+>>>profile=Profile(email='pietrek@gmail.com', phone='+48790790790', pet_id='123456789', pet_name='Andy', pet_desc='asjdahjdhasjajassajhd', is_lost=True)
+>>>profile.save()
+
+# Użyte pakieciki  (pip freeze > requirements.txt )
+asgiref==3.5.2
+beautifulsoup4==4.11.1
+Django==4.1
+django-bootstrap-v5==1.0.11
+django-phonenumber-field==6.4.0
+fontawesome-free==5.15.4
+mysqlclient==2.1.1
+phonenumbers==8.12.54
+Pillow==9.2.0
+soupsieve==2.3.2.post1
+sqlparse==0.4.2
+tzdata==2022.2
+windows-curses==2.3.0
+
+

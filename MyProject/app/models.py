@@ -31,7 +31,7 @@ class Profile(models.Model):
     email = models.EmailField(verbose_name='email', max_length=65)
     phone = PhoneNumberField(null=False, blank=False )
     pet_num = models.CharField(max_length=15, unique=True)
-    pet_name = models.CharField(max_length=30, unique=True)
+    pet_name = models.CharField(max_length=30)
     pet_desc = models.TextField(max_length=500)
     pet_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)    
     is_lost = models.BooleanField(default=False)
