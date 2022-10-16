@@ -1,13 +1,29 @@
 {% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+
+{% block styles %}
+    <link rel="stylesheet" href='{% static "css/index.css" %}'>
+{%endblock%}
 
 {% block title %}Strona Główna{% endblock %}
 
 {% block main %}
-    
-    <form action="/profile/" method="POST" id="search_bar">
-        {% csrf_token %} 
-        <input type="number" name="check_number" id="check_number">
-        <button type="submit" form="search_bar">Sprawdź</button>
+
+    <form class="form-inline" action="/profile/" method="POST" class="form-inline" id="search_bar" >
+        {% csrf_token %}
+        
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-paw" style="font-size: 24px;"></i></div>
+            </div>
+            <label class="sr-only" for="check_number">Username</label>
+            <input type="number" class="form-control" id="check_number" name="check_number" placeholder="Wpisz numer identyfikacyjny zwierzęcia">
+            <div class="input-group-append">
+                <button type="submit" id="search-button" class="btn btn-dark">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
     </form>
-    <p>sakjasdk</p>
 {% endblock %}

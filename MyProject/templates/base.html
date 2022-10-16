@@ -3,78 +3,64 @@
 {% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name ="author" content="Kamil Cielica">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{% block title %} {% endblock %}</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name ="author" content="Kamil Cielica">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>{% block title %} {% endblock %}</title>
 
-    <!-- Font Awesome -->
-    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
-    <link href="{% static 'fontawesome_free/css/all.css' %}" rel="stylesheet" type="text/css">
+        <!-- Font Awesome -->
+        <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+        <link href="{% static 'fontawesome_free/css/all.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap JS CSS -->
-    {% bootstrap_javascript %}
-    {% bootstrap_css %}
+        <!-- Bootstrap JS CSS -->
+        {% bootstrap_javascript %}
+        {% bootstrap_css %}
 
-    <!-- Basic CSS-->
-    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+        <!-- Basic CSS-->
+        <link rel="stylesheet" href='{% static "css/style.css" %}'>
+        {% comment %} blok CSS {% endcomment %}
+        {% block styles %}{% endblock %}
 
-</head>
+    </head>
 
-<!-- Scrollable area -->
-<body data-spy="scroll" data-target=".navbar" data-offset="20">
-    <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top">
-        <div class="container">
-          
+    <!-- Scrollable area -->
+    <body data-spy="scroll" data-target=".navbar" data-offset="20">
+        <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top">
+            <div class="container">
+            
 
-            <!-- Mobile version toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/">Strona Główna</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about">O nas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
-                </ul>
-                
-                    <!-- Navbar social icons  -->
-                <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/Cielako" target="blank"><i class="fab fa-facebook-square" style="font-size: 36px;"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/Cielako/"target="blank"><i class="fab fa-instagram" style="font-size: 36px;"></i></a> </li>
-                </ul>
+                <!-- Mobile version toggler -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" href="/">Strona Główna</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">O nas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                    </ul>
+                    
+                        <!-- Navbar social icons  -->
+                    <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
+                        <li class="nav-item"><a class="nav-link" href="https://github.com/Cielako" target="blank"><i class="fab fa-facebook-square" style="font-size: 36px;"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/Cielako/"target="blank"><i class="fab fa-instagram" style="font-size: 36px;"></i></a> </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Site Sections -->
-    <div id="main">
-       {% block main %} {% endblock %}
-    </div>
-    <footer class="bg-light text-center text-lg-start ">
-        <!-- Copyright -->
-        <div class="text-center p-3">
-           &copy <script>document.write(new Date().getFullYear())</script>Copyright: <a href="https://github.com/Cielako">Cielako</a> 
+        <!-- Site Sections -->
+        <div id="main">
+        {% block main %} {% endblock %}
         </div>
-    </footer>
-</body>
- <!-- Navbar hide after click for mobile version -->
- <script>
-    $('.navbar-nav>li>a').on('click', function(){
-        $('.navbar-collapse').collapse('hide');
-    });
-
-        if($(window).width() <= 768){
-            var divId;
-            $('.nav-link').click(function(){    
-            divId = $(this).attr('href');
-            $('html, body').animate({
-                scrollTop: $(divId).offset().top - 300
-            }, 100);
-            });
-        }
- </script>
+        <footer class="bg-light text-center text-lg-start ">
+            <!-- Copyright -->
+            <div class="text-center p-3">
+            &copy <script>document.write(new Date().getFullYear())</script>Copyright: <a href="https://github.com/Cielako">Cielako</a> 
+            </div>
+        </footer>
+    </body>
 </html>

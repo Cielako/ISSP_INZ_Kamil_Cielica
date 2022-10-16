@@ -76,4 +76,14 @@ sqlparse==0.4.2
 tzdata==2022.2
 windows-curses==2.3.0
 
-
+# Warto pamiętać o snippetach typu do Django bardzo ułatwia pracę
+{
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html" : "django-html",
+        "**/templates/**/*" : "django-text",
+    },
+}
