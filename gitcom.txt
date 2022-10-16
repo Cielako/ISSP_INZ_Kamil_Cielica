@@ -1,3 +1,4 @@
+# Przydatne komendy GIT
 git status - wyświetla obecnie śledzone pliki
 git reset - resetuje śledzenie plików
 git log --oneline - listowanie zmian
