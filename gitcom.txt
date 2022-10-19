@@ -8,5 +8,7 @@ git branch -a  - wszystkie branche projektu nawet te z repozytorium zdalnego
 git branch -m "NAZWA2" - zmiana nazwy obecnego brancha na NAZWA2
 git merge NAZWA2 - Łaczymy 2 branche w jeden (PAMIĘTAĆ O POPRAWNYM BRANCHU)
 git branch -d NAZWA2 - usuwamy brancha
+git push -u origin Frontend - wypychanmy nowego brancha
+
 
 
