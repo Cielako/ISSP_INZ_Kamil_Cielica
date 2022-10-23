@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
-    'app.apps.AppConfig',
+    # 'app.apps.AppConfig',
     'bootstrap5',
-    'fontawesome_free'
+    'fontawesome_free',
+    'app',
+    'users',
 ]
 
 MIDDLEWARE = [

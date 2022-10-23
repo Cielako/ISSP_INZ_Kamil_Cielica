@@ -1,10 +1,6 @@
 from curses.ascii import HT
 from multiprocessing import context
-from os import system
 from queue import Empty
-import sys
-from urllib import request
-from urllib.request import Request
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import User, Profile

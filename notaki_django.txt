@@ -87,3 +87,13 @@ windows-curses==2.3.0
         "**/templates/**/*" : "django-text",
     },
 }
+
+
+# Tworząc apkę w django funkcjonalności możemy podzielić pracę na moduły
+Każdy z owych modułów ma oddzielne widoki (views.py), odnośniki(urls.py)
+jak i modele(models.py).
+
+Separowanie danej funkcjonalności może znacznie ułatwić pracę i ewentualny rozwój całej aplikacji
+
+* app - core apki w niej znajduja się templatki 
+* users - funkcjonalność autoryzacji użytkowników
