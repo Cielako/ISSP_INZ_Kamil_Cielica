@@ -13,5 +13,7 @@
 - [x] czyszczenie zbędnych plików (Virtual env) - 16.10.2022
 - [x] wstępny szablon witryny - 19.10.2022
 - [ ] utworzenie testowej autoryzacji użytkowników - 31.10.2022
+    - [x] Logowanie przy użyciu wbudowanego modelu (z poziomu witryny)
+    - [ ] Utworzenie własnego modelu użytkownika 
 - [ ] praca nad tworzeniem bazowych funkcji aplikacji (profil danego zwierzęcia) - 15.11.2022
 

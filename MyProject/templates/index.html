@@ -26,5 +26,11 @@
             </div>
         </div>
     </form>
-    <a href="{%url 'login'%}">klik</a>
+    {% comment %} Testowe menu logowania - należy utworzyć własny model dla użytkowników {% endcomment %}
+    {%if request.user.is_authenticated %}
+        <a href="{%url 'logout'%}">Wyloguj</a>
+    {% else %}
+        <a href="{%url 'login'%}">Zaloguj</a>
+        <a href="{%url 'register'%}">Zarejestruj</a>
+    {% endif %}
 {% endblock %}
