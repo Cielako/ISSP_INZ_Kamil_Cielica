@@ -43,8 +43,9 @@ INSTALLED_APPS = [
     # 'app.apps.AppConfig',
     'bootstrap5',
     'fontawesome_free',
-    'app',
-    'users',
+    'app',  # core aplikacji
+    # 'accounts', # moduł uwierzytelnienia użytkowników
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.Account' # nowy
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] # nowy 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
