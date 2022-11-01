@@ -3,20 +3,24 @@
 {% load bootstrap5 %}
 
 {% block main %} 
-    <form action="" method=POST>
+    <form method=POST action="" >
         {% csrf_token %}
         <div class="mb-3">
-            <label for="email" class="form-label">Adres e-mail</label>
-            <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
+            <label for="username" class="form-label">Nazwa użytkownika</label>
+            {{form.username}}
         </div>
         <div class="mb-3">
-            <label for="login" class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" aria-describedby="loginHelp">
+            <label for="email" class="form-label">Adres E-mail</label>
+            {{form.email}}
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password">
+            <label for="password1" class="form-label">Hasło</label>
+            {{form.password1}}
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label for="password2" class="form-label">Powtórz Hasło</label>
+            {{form.password2}}
+        </div>
+        <button type="submit" class="btn btn-primary">Zarejestruj</button>
     </form>
 {% endblock %}

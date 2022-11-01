@@ -26,8 +26,6 @@
 
     </head>
 
-    <!-- Scrollable area -->
-    {% comment %} data-spy="scroll" data-target=".navbar" data-offset="20" {% endcomment %}
     <body>
         <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top ">
             <div class="container">
@@ -35,7 +33,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <i class="fas fa-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="font-size: 36px;"></i></a> <p>{{request.user.username}}</p>   
+                {% comment %} <i class="fas fa-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="font-size: 36px;"></i></a> <p>{{request.user.username}}</p>{% endcomment %}
+                
+                {%if request.user.is_authenticated %}
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-user" style="font-size: 36px;"></i></a> {{request.user.username}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Profil użytkownika</a>
+                      <a class="dropdown-item" href="#">Twoje zwierzęta</a>
+                      <a class="dropdown-item" href="{%url 'logout'%}">Wyloguj</a>
+                    </div>
+                  </div>
+                {%endif%}   
                 <div class="collapse navbar-collapse" id="navbarResponsive">           
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item"><a class="nav-link active" href="{% url 'index'%}">Strona Główna</a></li>
@@ -57,31 +68,21 @@
           {% comment %} Tutaj wywołujemy testowa wiadomość przy module logowania{% endcomment %}
             {% if messages %}
               {% for message in messages %}
-               {{message}}
+                {%if message.tags == 'success'%}
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {%endif%}
+                {%if message.tags == 'error'%}
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {%endif%}
               {% endfor %}
-            {% endif%}
-            {% block main %} {% endblock %}
-            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Profil</h5>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                  <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                  </div>
-                  <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                      Dropdown button
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            {% endif %}
+            {% block main %}  {% endblock %}
         </div>
         <footer class="bg-light text-center text-lg-start ">
             <!-- Copyright -->

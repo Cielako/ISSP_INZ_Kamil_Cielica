@@ -11,10 +11,17 @@ class Account(AbstractUser):
     # verbose_name - uzyskujemy więcej informacji w panelu administratora 
     # auto_now_add - ustawia datę w momencie utworzenia nowego obiektu
     
+    
     username = models.CharField(verbose_name='nazwa użytkownika', max_length=35, unique=True)
     email = models.EmailField(verbose_name='adres email', max_length=65, unique=True)
-    last_login = models.DateTimeField(verbose_name='ostatnio zalogowany', editable=False, auto_now=True)
     phone = PhoneNumberField(verbose_name='numer telefonu', null=False, blank=True)
+    
+    is_active = models.BooleanField(verbose_name='konto aktywne', default=True, help_text='Aktywność konta użytkownika')
+    is_staff = models.BooleanField(verbose_name='administrator', default=False, help_text='Możliwość zalogowania do panelu administracyjnego')
+    is_superuser = models.BooleanField(verbose_name='status SuperUsera', help_text='Użytkownik ma pełną kontrolę bez delegacji uprawnień')
+    
+    last_login = models.DateField(verbose_name='ostatnie logowanie', auto_now=True)
+    
     
     # # Zamiast nazwy użytkownika logujemy się mailem
     # USERNAME_FIELD = 'email'

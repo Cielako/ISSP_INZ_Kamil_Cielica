@@ -1,9 +1,8 @@
 from django.contrib import admin
 from .models import Account
 from django.contrib.auth.admin import UserAdmin
-from .forms import CustomUserCreationForm
 
-# Register your models here.
+# Wczytujemy nasze modele do panelu administracyjnego
 class CustomAccountAdmin(UserAdmin):
     readonly_fields=('last_login',)
     list_display = ('username', 'email', 'last_login', 'is_staff')
@@ -44,7 +43,6 @@ class CustomAccountAdmin(UserAdmin):
         }),
         
     )    
-    
 admin.site.register(Account, CustomAccountAdmin)
 
 # @admin.register(Account)
