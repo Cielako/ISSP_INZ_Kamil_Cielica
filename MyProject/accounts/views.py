@@ -3,8 +3,9 @@ from urllib import response
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, UserPasswordChangeForm
 
 
 # Testowa metoda do logowania się na stronie.
@@ -17,7 +18,7 @@ def user_login(request):
         
     """
     if(request.user.is_authenticated):
-        print('User already Authenticated')
+        messages.error(request, 'Użytkownik jest już zalogowany')
         return redirect('/')
     else:
         if request.method == "POST":
@@ -41,7 +42,7 @@ def user_register(request):
         Metoda pobiera dane z  formularza i tworzy nowy obiekt w bazie
     """
     if(request.user.is_authenticated):
-        print('User already Authenticated')
+        messages.error(request, 'Nie możesz się zarejestrować, użytkownik jest już zalogowany.')
         return redirect('/')
     else: 
         if request.method == 'POST':
@@ -56,9 +57,55 @@ def user_register(request):
                 return redirect('/')
             else:
                 messages.error(request, 'Rejestracja się nie powiodła, podano nieprawidłowe dane')
-        form = UserRegisterForm()
+        else:
+            form = UserRegisterForm()
         return render(request, 'auth/register.html', context={'form':form})
         
 def user_logout(request):
     logout(request)
-    return render(request, "index.html")
+    return render(request, 'index.html')
+
+def user_profile(request):
+    if not (request.user.is_authenticated):
+        messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
+        return redirect('/')
+    else: 
+        return render(request, 'auth/profile.html')
+
+# @login_required(login_url='/')
+def user_profile_edit(request):
+    if not (request.user.is_authenticated):
+        messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
+        return redirect('/')
+    else: 
+        if request.method == 'POST':
+            form = UserUpdateForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Twój profil został edytowany pomyślnie.')
+            else:
+                messages.error(request, 'Wystąpił błąd przy edycji profilu.')
+        else:
+            form = UserUpdateForm(instance=request.user)
+        return render(request, 'auth/profile_edit.html', context={'form':form})
+    
+
+def user_password_change(request):
+    if not (request.user.is_authenticated):
+        messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
+        return redirect('/')
+    else:
+        user = request.user
+        if request.method == 'POST':
+            form = UserPasswordChangeForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Twoje hasło zostło zmienione ")
+                return redirect('login')
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+
+        form = UserPasswordChangeForm(user)
+        return render(request, 'auth/password_change.html', {'form': form})
+        

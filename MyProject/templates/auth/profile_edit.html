@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+
+{% block title %}Edytuj Profil{% endblock title %}
+
+{% block main %} 
+    <form action="" method=POST>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Imię</label>
+            {{ form.first_name }}
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Nazwisko</label>
+            {{ form.last_name }}
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Numer Telefonu</label>
+            {{ form.phone }}
+        </div>
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+    </form>
+{% endblock %}

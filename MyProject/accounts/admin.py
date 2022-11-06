@@ -7,6 +7,7 @@ class CustomAccountAdmin(UserAdmin):
     readonly_fields=('last_login',)
     list_display = ('username', 'email', 'last_login', 'is_staff')
     
+    
     fieldsets = (
         ('Dane logowania',
             {

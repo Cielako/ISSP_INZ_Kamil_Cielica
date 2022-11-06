@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+
+{% block title %}Edytuj Profil{% endblock title %}
+
+{% block main %} 
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Imię:</label>
+            {{ request.user.first_name }}
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Nazwisko: </label>
+            {{ request.user.last_name }}
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Numer telefonu:</label>
+            {{ request.user.phone }}
+        </div>
+        <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button">Edytuj</a>
+        <a class="btn btn-primary" href="{%url 'password_change' %}" role="button">Zmień hasło</a>
+    
+{% endblock %}
