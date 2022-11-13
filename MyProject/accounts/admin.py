@@ -45,7 +45,3 @@ class CustomAccountAdmin(UserAdmin):
         
     )    
 admin.site.register(Account, CustomAccountAdmin)
-
-# @admin.register(Account)
-# class AccountAdmin(admin.ModelAdmin):
-#     list_display = ('username', 'email', 'last_login')

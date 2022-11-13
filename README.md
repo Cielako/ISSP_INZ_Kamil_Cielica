@@ -16,6 +16,6 @@
     - [x] logowanie przy użyciu wbudowanego modelu (z poziomu witryny)
     - [x] utworzenie własnego modelu użytkownika  - 28.10.2022
     - [x] testowa rejestracja użytkowników - 1.11.2022
-- [ ] dodanie panelu administracyjnego użytkownika - edycja nieobowiązkowych informacji osobistych (telefon, imie, nazwisko, zmiana hasła)
+- [x] dodanie panelu administracyjnego użytkownika - edycja nieobowiązkowych informacji osobistych (telefon, imie, nazwisko, zmiana hasła) - 06.11.2022
 - [ ] praca nad tworzeniem bazowych funkcji aplikacji (profil danego zwierzęcia) - 15.11.2022
 

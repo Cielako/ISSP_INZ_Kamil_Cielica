@@ -1,23 +1,53 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Account
-from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.models import Permission
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import SetPasswordForm
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 
 # Definiujemy własne formularze coś na wzór tych w html
 
 # Formularz rejestracji użytkownika
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(max_length=35, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(max_length=65, required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(
+        required=True,
+        max_length=35, 
+        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        error_messages = {
+                'unique' : "Taki użytkownik już istnieje.",
+                'max_length':"Nazwa użytkownika jest za długa."
+                 })
+      
+    email = forms.EmailField(
+        max_length=65, 
+        required=True, 
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        error_messages = {
+                'unique' : "Podany adres e-mail już został wykorzystany.",
+                'max_length':"adres e-mail jest za długi.",
+                'invalid':"Podaj poprawny adres e-mail."
+                })
+    password1 = forms.CharField(
+        max_length=35, 
+        required=True, 
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        error_messages = {
+                'min_length':"Podane hasło się nie zgadza"
+                })
+    
+    password2 = forms.CharField(
+        max_length=35, 
+        required=True, 
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
     class Meta:
         model  = Account
-        fields = ['username', 'email', 'password1', 'password2', 'phone']
-        
+        fields = ['username', 'email', 'password1', 'password2']
+     
+           
     def save(self, commit: bool = True):
         """
         Tworzy i zapisuje obiekt bazodanowy z danych powiazanych
@@ -37,15 +67,17 @@ class UserRegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=35, widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     last_name = forms.CharField(max_length=35, widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
-    phone = PhoneNumberField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    phone = PhoneNumberField(widget=PhoneNumberPrefixWidget(initial="PL", attrs={'class': 'form-control'}), required=False)
 
     class Meta:
         model  = Account
         fields = ['first_name', 'last_name', 'phone']
+   
 
 class UserPasswordChangeForm(SetPasswordForm):
     new_password1 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     new_password2 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
     class Meta:
         model = get_user_model()
         fields = ['new_password1', 'new_password2']

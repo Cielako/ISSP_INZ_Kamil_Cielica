@@ -56,7 +56,24 @@ def user_register(request):
                 messages.success(request, 'Rejestracja Przebiegła pomyślnie')
                 return redirect('/')
             else:
-                messages.error(request, 'Rejestracja się nie powiodła, podano nieprawidłowe dane')
+                error_list = [x for x in list(form.errors.values())[0]]
+                counter = sum('password' in s for s in error_list)
+                i=0
+                for error in error_list:
+                    if "password" in error:
+                        i+=1
+                        if i >= counter:
+                            messages.error(request, 'Twoje hasło nie spełnia wymagań')
+                    else:
+                        messages.error(request, error)
+                # error_list = [x for x in list(form.errors.values())[0] if x != "password"]
+                # for error in error_list:
+                #     if "password" in error:
+                #         messages.error(request, 'Twoje hasło nie spełnia wymagań')
+                #     else:
+                #         messages.error(request, error)
+
+                # messages.error(request, 'Rejestracja się nie powiodła, podano nieprawidłowe dane')
         else:
             form = UserRegisterForm()
         return render(request, 'auth/register.html', context={'form':form})
@@ -100,11 +117,11 @@ def user_password_change(request):
             form = UserPasswordChangeForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Twoje hasło zostło zmienione ")
+                messages.success(request, "Twoje hasło zostało zmienione, zaloguj się nowym hasłem")
                 return redirect('login')
             else:
                 for error in list(form.errors.values()):
-                    messages.error(request, error)
+                    messages.error(request, "Twoje hasło nie spełnia wymagań")
 
         form = UserPasswordChangeForm(user)
         return render(request, 'auth/password_change.html', {'form': form})

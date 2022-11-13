@@ -17,10 +17,17 @@
             <label for="password1" class="form-label">Hasło</label>
             {{form.password1}}
         </div>
+        <ul>
+            <li>Twoje hasło nie powinno pokrywać się z Twoimi danymi </li>
+            <li>Twoje hasło powinno się składać z minimum 8 znaków</li>
+            <li>Twoje hasło nie powinno być zbyt powszechne</li>
+            <li>Twoje hasło nie powinno zawierać samych cyfr</li>
+        </ul>
         <div class="mb-3">
             <label for="password2" class="form-label">Powtórz Hasło</label>
             {{form.password2}}
         </div>
+        <p>Hasła musza się zgadzać</p>
         <button type="submit" class="btn btn-primary">Zarejestruj</button>
     </form>
 {% endblock %}
