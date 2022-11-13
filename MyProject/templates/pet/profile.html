@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+
+{% block styles %}
+    <link rel="stylesheet" href='{% static "css/index.css" %}'>
+{%endblock%}
+
+{% block title %}Profil zwierzęcia{% endblock %}
+
+{% block main %}
+    {% for item in all %}
+        <img src="/media/{{item.pet_image}}" width="200px">
+        {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
+        {% if item.owner_id == request.user.id%}
+           <p>Jesteś właścicielem</p>
+        {% endif %}
+        <p>Numer identyfikacyjny zwierzęcia: {{ item.pet_num }} <br>
+            Imię: {{item.pet_name}} </br>
+            Numer telefonu właściciela: {{item.phone}}</br>
+            Adres e-mail: {{item.email}}</br>
+            Opis: {{item.pet_desc}}</p>
+    {% endfor %}
+{% endblock %}

@@ -1,6 +1,6 @@
 from atexit import register
 from django.contrib import admin
-from .models import Profile
+
 
 # Register your models here.
 # Możemy również dowolnie precyzować jak nasz model ma być wyświetlany 
@@ -11,9 +11,3 @@ from .models import Profile
     
     admin.site.register(Profile) - domyślne ustawienie strony
 '''
-
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('pet_name', 'pet_num', 
-                    'pet_desc', 'is_lost',
-                    'phone','email')

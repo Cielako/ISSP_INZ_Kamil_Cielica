@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'bootstrap5',
     'fontawesome_free',
     'app',  # core aplikacji
-    # 'accounts', # moduł uwierzytelnienia użytkowników
-    'accounts.apps.AccountsConfig',
+    'accounts', # moduł uwierzytelnienia użytkowników
+    'pets', # moduł profili zwierząt
+    #'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
