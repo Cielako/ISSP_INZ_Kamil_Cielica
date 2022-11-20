@@ -10,4 +10,19 @@
 
 {% block main %}
     <H1>Lista Twoich zwierząt:</H1>
+    {% if list == None %}
+        <p>Aktualnie nie masz żadnych zwierząt</p>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'add_pet_profile'%}" role="button">Dodaj nowe zwierze</a>
+    {% for item in list %}
+        <img src="/media/{{item.pet_image}}" width="200px">
+        {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
+        {% if item.owner_id == request.user.id%}
+            <p>Numer identyfikacyjny zwierzęcia: <a href="/pets/profile/{{ item.pet_num }}">{{ item.pet_num }}</a><br>
+                Imię: {{item.pet_name}}</p>
+            <a class="btn btn-primary" href="#" role="button">Edytuj profil</a>
+            <a class="btn btn-primary" href="#" role="button">Usuń profil</a>
+            <br>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
