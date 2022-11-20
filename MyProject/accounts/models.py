@@ -17,7 +17,7 @@ class Account(AbstractUser):
     
     is_active = models.BooleanField(verbose_name='konto aktywne', default=True, help_text='Aktywność konta użytkownika')
     is_staff = models.BooleanField(verbose_name='administrator', default=False, help_text='Możliwość zalogowania do panelu administracyjnego')
-    is_superuser = models.BooleanField(verbose_name='status SuperUsera', help_text='Użytkownik ma pełną kontrolę bez delegacji uprawnień')
+    is_superuser = models.BooleanField(verbose_name='status SuperUsera', default=False, help_text='Użytkownik ma pełną kontrolę bez delegacji uprawnień')
     
     last_login = models.DateField(verbose_name='ostatnie logowanie', auto_now=True)
     
@@ -26,11 +26,8 @@ class Account(AbstractUser):
     # REQUIRED_FIELDS = ['username']
     
     # # Ta metoda zwraca obiekt w postaci stringa
-    # def __str__(self):
-    #     return self.username
+    def __str__(self):
+        return self.username
     
-    # def has_perm(self, perm, obj=None):
-    #     return self.is_admin
-    
-    # def has_module_perms(self, app_label):
-    #     return True
+    def has_module_perms(self, app_label):
+        return True

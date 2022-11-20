@@ -30,6 +30,7 @@ class UserRegisterForm(UserCreationForm):
                 'max_length':"adres e-mail jest za długi.",
                 'invalid':"Podaj poprawny adres e-mail."
                 })
+    
     password1 = forms.CharField(
         max_length=35, 
         required=True, 
@@ -57,6 +58,7 @@ class UserRegisterForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.is_staff = False
         user.is_superuser = False
+        
         if commit:
             user.save()
             # Nadajemy nowemu użytkownikowi uprawnienia do edycji użytkownika
@@ -65,9 +67,20 @@ class UserRegisterForm(UserCreationForm):
         return user
 
 class UserUpdateForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=35, widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
-    last_name = forms.CharField(max_length=35, widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
-    phone = PhoneNumberField(widget=PhoneNumberPrefixWidget(initial="PL", attrs={'class': 'form-control'}), required=False)
+    first_name = forms.CharField(
+        max_length=35, 
+        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        required=False)
+    
+    last_name = forms.CharField(
+        max_length=35, 
+        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        required=False)
+    
+    phone = PhoneNumberField(
+        widget=PhoneNumberPrefixWidget(
+            initial="PL", 
+            attrs={'class': 'form-control'}), required=False)
 
     class Meta:
         model  = Account
@@ -75,8 +88,15 @@ class UserUpdateForm(forms.ModelForm):
    
 
 class UserPasswordChangeForm(SetPasswordForm):
-    new_password1 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    new_password2 = forms.CharField(max_length=35, required=True, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    new_password1 = forms.CharField(
+        max_length=35, 
+        required=True, 
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
+    new_password2 = forms.CharField(
+        max_length=35, 
+        required=True, 
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = get_user_model()

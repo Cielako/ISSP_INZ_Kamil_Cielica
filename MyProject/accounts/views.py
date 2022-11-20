@@ -80,7 +80,8 @@ def user_register(request):
         
 def user_logout(request):
     logout(request)
-    return render(request, 'index.html')
+    messages.success(request, "Zostałeś wylogowany")
+    return redirect('/')
 
 def user_profile(request):
     if not (request.user.is_authenticated):
