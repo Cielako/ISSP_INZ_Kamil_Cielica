@@ -18,8 +18,8 @@
     - [x] testowa rejestracja użytkowników - 1.11.2022
 - [x] dodanie panelu administracyjnego użytkownika - edycja nieobowiązkowych informacji osobistych (telefon, imie, nazwisko, zmiana hasła) - 06.11.2022
 - [ ] praca nad tworzeniem bazowych funkcji aplikacji (profil danego zwierzęcia) - 15.11.2022
-    - [ ] Testowe wyświetlanie profilu danego zwierzęcia - (Rozpoczęto 13.11.2022)
-    - [ ] Testowe dodawanie zwierząt z profilu użytkownika
+    - [x] Testowe wyświetlanie profilu danego zwierzęcia - (Rozpoczęto 13.11.2022)
+    - [x] Testowe dodawanie zwierząt z profilu użytkownika (20.11.2022)
     - [ ] Testowa edycja profilu zwierzęcia
     - [ ] Kompletne menu dodawania/edycji danego zwierzęcia
     
