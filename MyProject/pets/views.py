@@ -17,22 +17,24 @@ def my_pets(request):
     else: 
         return render(request, 'pet/my_pets.html', {'list' : pet_list })
 
-# Zapytanie o profil danego zwierzęcia (*pet_num - argument opcjonalny)
-def pet_profile(request, pet_num=None):
+# Zapytanie o profil danego zwierzęcia (*pet_num i *pet_id - argumenty opcjonalne)
+def pet_profile(request, pet_num=None, pet_id=None):
     
     if request.method == "POST":
-        req_data = request.POST.get('check_number', None) 
-        specific_data = PetProfile.objects.filter(pet_num=req_data)
-    elif pet_num is not None:
+        pet_num = request.POST.get('check_number') 
         specific_data = PetProfile.objects.filter(pet_num=pet_num)
+    elif  request.method == "GET":
+        pet_id = request.GET.get('pet_id')
+        specific_data = PetProfile.objects.filter(id=pet_id)
     
-    if specific_data is not Empty:
+    if specific_data:
         return render(request, 'pet/profile.html', {'all' : specific_data})
     else:
-        messages.error(request, 'Zwierze o podanym numerze nie istnieje')
-        redirect("/")  
+        messages.error(request, 'Zwierze o podanym numerze nie istnieje')  
+        return  redirect("/")
+       
 
-# Dodajemy nowe zwierze dla aktualnie zalogowanego użytkowinka    
+# Dodaje nowe zwierze dla aktualnie zalogowanego użytkowinka    
 def add_pet_profile(request):
     if(request.user.is_authenticated):
         if request.method == 'POST':
@@ -48,13 +50,26 @@ def add_pet_profile(request):
                 print(form.errors)
         else:
             form = PetRegisterForm()
-        return render(request, 'pet/add_pet.html', context={'form':form})
-                
+        return render(request, 'pet/add_pet.html', context={'form':form})    
     else:
         messages.error(request, 'Nie możesz zarejestrować zwierzęcia, musisz być zalogowany.')
         return redirect('/')
     
-    
+# Usuwa  wybrane zwierze jeżeli użytkownik jest jego właścicielem   
+def del_pet_profile(request, pet_id=None):
+    if request.method == 'GET':
+        pet_id = request.GET.get('pet_id')
+        profile = PetProfile.objects.get(pk=pet_id)
+        
+        if request.user.id == profile.owner_id:
+            print(profile)
+            profile.delete()
+            messages.success(request, 'Pomyślnie usunięto zwierzę')
+        else:
+            messages.error(request, 'Nie masz dostępu do tej strony')
+    return redirect('my_pets')
+
+
 
 # def add_pet_profile(request):
 #     if(request.user.is_authenticated):

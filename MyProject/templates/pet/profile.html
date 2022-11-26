@@ -10,6 +10,7 @@
 
 {% block main %}
     {% for item in all %}
+        <p>{{item.id}}</p>
         <img src="/media/{{item.pet_image}}" width="200px">
         {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
         {% if item.owner_id == request.user.id%}

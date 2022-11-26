@@ -27,7 +27,7 @@ class PetRegisterForm(forms.ModelForm):
         error_messages = {
                 'max_length':"Wprowadzony opis zwierzęcia jest za długi"
                  })
-    is_lost = forms.BooleanField()
+    is_lost = forms.BooleanField(required=False)
     
     class Meta:
         model = PetProfile

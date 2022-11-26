@@ -9,20 +9,54 @@
 {% block title %}Twoje zwierzęta{% endblock %}
 
 {% block main %}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Usuń zwierze</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                {% comment %} <span aria-hidden="true">&times;</span> {% endcomment %}
+            </button>
+            </div>
+            <div class="modal-body">
+                Czy na pewno chcesz usunąć wybrane zwierze ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <a class="btn btn-primary" href="{% url 'del_pet_profile'%}?pet_id={{ item.id }}"  role="button" id="delete">Usuń</a>
+            </div>
+        </div>
+        </div>
+    </div>
     <H1>Lista Twoich zwierząt:</H1>
     {% if list == None %}
         <p>Aktualnie nie masz żadnych zwierząt</p>
     {% endif %}
     <a class="btn btn-primary" href="{% url 'add_pet_profile'%}" role="button">Dodaj nowe zwierze</a>
+    <br>
     {% for item in list %}
         <img src="/media/{{item.pet_image}}" width="200px">
         {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
         {% if item.owner_id == request.user.id%}
-            <p>Numer identyfikacyjny zwierzęcia: <a href="/pets/profile/{{ item.pet_num }}">{{ item.pet_num }}</a><br>
+            <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}?pet_id={{ item.id }}">{{ item.pet_num }}</a><br>
                 Imię: {{item.pet_name}}</p>
+            <a class="btn btn-primary" href="{% url 'pet_profile'%}?pet_id={{ item.id }}" role="button">Pokaż profil</a>
             <a class="btn btn-primary" href="#" role="button">Edytuj profil</a>
-            <a class="btn btn-primary" href="#" role="button">Usuń profil</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" id="{{item.id}}">
+                Usuń profil
+            </button>
             <br>
+
+            <!-- Prosty skrypt do przekazywania id usuwanego zwierzęcia -->
+            <script type="text/javascript">
+                document.getElementById("exampleModalCenter").addEventListener('show.bs.modal', (e) => {
+                    console.log("id zwierzęcia:" + e.relatedTarget.id)
+                    var link = "{% url 'del_pet_profile'%}?pet_id=" +  e.relatedTarget.id;
+                    document.getElementById("delete").setAttribute("href", link);
+                });
+            </script>    
         {% endif %}
     {% endfor %}
 {% endblock %}
