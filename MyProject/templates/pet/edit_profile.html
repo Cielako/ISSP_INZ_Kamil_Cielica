@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+
+{% block styles %}
+    <link rel="stylesheet" href='{% static "css/index.css" %}'>
+{%endblock%}
+
+{% block title %}Edytuj swoje zwierzę{% endblock %}
+
+{% block main %}
+    <form action="." method=POST enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="pet_num" class="form-label">Numer</label>
+            {{ form.pet_num }}
+        </div>
+        <div class="mb-3">
+            <label for="pet_name" class="form-label">Imię</label>
+            {{ form.pet_name }}
+        </div>
+        <div class="mb-3">
+            <label for="pet_image" class="form-label">Zdjęcie</label>
+            {{ form.pet_image }}
+        </div>
+        <div class="mb-3">
+            <label for="pet_desc" class="form-label">Opis</label>
+            {{ form.pet_desc }}
+        </div>
+        <div class="mb-3">
+            <label for="pet_desc" class="form-label">Zaginął</label>
+            {{ form.is_lost }}
+        </div>
+        <button type="submit" class="btn btn-primary">Edytuj zwierzę</button>
+    </form>
+{% endblock %}

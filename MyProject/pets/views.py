@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from .forms import PetRegisterForm
+from .forms import PetRegisterForm, PetUpdateForm
 
 # Create your views here.
 
@@ -24,7 +24,7 @@ def pet_profile(request, pet_num=None, pet_id=None):
         pet_num = request.POST.get('check_number') 
         specific_data = PetProfile.objects.filter(pet_num=pet_num)
     elif  request.method == "GET":
-        pet_id = request.GET.get('pet_id')
+        # pet_id = request.GET.get('pet_id')
         specific_data = PetProfile.objects.filter(id=pet_id)
     
     if specific_data:
@@ -33,10 +33,9 @@ def pet_profile(request, pet_num=None, pet_id=None):
         messages.error(request, 'Zwierze o podanym numerze nie istnieje')  
         return  redirect("/")
        
-
 # Dodaje nowe zwierze dla aktualnie zalogowanego użytkowinka    
 def add_pet_profile(request):
-    if(request.user.is_authenticated):
+    if request.user.is_authenticated:
         if request.method == 'POST':
             form = PetRegisterForm(request.POST, request.FILES)
 
@@ -55,6 +54,27 @@ def add_pet_profile(request):
         messages.error(request, 'Nie możesz zarejestrować zwierzęcia, musisz być zalogowany.')
         return redirect('/')
     
+# Edytuje dane zwierze danego użytkownika    
+def edit_pet_profile(request, pet_id):
+    profile = PetProfile.objects.get(pk=pet_id)
+    if request.user.is_authenticated and request.user.id == profile.owner_id:
+        if request.method == 'POST':
+            form = PetUpdateForm(request.POST, request.FILES, instance=profile)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Pomyślnie edytowano zwierzę')
+                return redirect('my_pets')
+            else:
+                print(form.errors)
+                messages.error(request, 'Wystąpił błąd przy edycji profilu.')
+        else:
+            form = PetUpdateForm(instance=profile)
+        return render(request, 'pet/edit_profile.html', context={'form':form})
+        #     messages.success(request, 'Pomyślnie usunięto zwierzę')
+    else:
+        messages.error(request, 'Nie masz dostępu do tej strony')
+        return redirect('/')
+        
 # Usuwa  wybrane zwierze jeżeli użytkownik jest jego właścicielem   
 def del_pet_profile(request, pet_id=None):
     if request.method == 'GET':

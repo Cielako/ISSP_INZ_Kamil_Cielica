@@ -21,8 +21,8 @@
     - [x] Testowe wyświetlanie profilu danego zwierzęcia - (Rozpoczęto 13.11.2022)
     - [x] Testowe dodawanie zwierząt z profilu użytkownika (20.11.2022)
     - [x] Testowe usuwanie zwierząt z panelu użytkownika (26.11.2022)
-    - [ ] Testowa edycja profilu zwierzęcia
-    - [ ] Kompletne menu dodawania/edycji danego zwierzęcia
+    - [x] Testowa edycja profilu zwierzęcia (27.11.2022)
+    - [ ] Kompletne menu dodawania/edycji danego zwierzęcia - Testowe
     
     
 

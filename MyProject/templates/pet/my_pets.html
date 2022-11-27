@@ -24,7 +24,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                <a class="btn btn-primary" href="{% url 'del_pet_profile'%}?pet_id={{ item.id }}"  role="button" id="delete">Usuń</a>
+                <a class="btn btn-primary" href=   role="button" id="delete">Usuń</a>
             </div>
         </div>
         </div>
@@ -39,10 +39,10 @@
         <img src="/media/{{item.pet_image}}" width="200px">
         {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
         {% if item.owner_id == request.user.id%}
-            <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}?pet_id={{ item.id }}">{{ item.pet_num }}</a><br>
+            <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
                 Imię: {{item.pet_name}}</p>
-            <a class="btn btn-primary" href="{% url 'pet_profile'%}?pet_id={{ item.id }}" role="button">Pokaż profil</a>
-            <a class="btn btn-primary" href="#" role="button">Edytuj profil</a>
+            <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>
+            <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button">Edytuj profil</a>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" id="{{item.id}}">
                 Usuń profil

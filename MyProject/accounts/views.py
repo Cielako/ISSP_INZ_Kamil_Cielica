@@ -92,7 +92,7 @@ def user_profile(request):
 
 # @login_required(login_url='/')
 def user_profile_edit(request):
-    if not (request.user.is_authenticated):
+    if not request.user.is_authenticated:
         messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
         return redirect('/')
     else: 
@@ -109,7 +109,7 @@ def user_profile_edit(request):
     
 
 def user_password_change(request):
-    if not (request.user.is_authenticated):
+    if not request.user.is_authenticated:
         messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
         return redirect('/')
     else:
