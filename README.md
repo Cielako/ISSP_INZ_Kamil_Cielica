@@ -22,7 +22,12 @@
     - [x] Testowe dodawanie zwierząt z profilu użytkownika (20.11.2022)
     - [x] Testowe usuwanie zwierząt z panelu użytkownika (26.11.2022)
     - [x] Testowa edycja profilu zwierzęcia (27.11.2022)
-    - [ ] Kompletne menu dodawania/edycji danego zwierzęcia - Testowe
+    - [x] Kompletne menu dodawania/edycji danego zwierzęcia - Testowe
+        -[x] Oczyszczanie folderu media (przy edycji / usunięciu zwierzęcia) (03.12.2022)
+    - [ ] Sekcja zwierząt zaginionych
+    - [ ] Poprawa UI witryny 
+    - [ ] Lokalizacja bugów i ich poprawa
+    
     
     
 

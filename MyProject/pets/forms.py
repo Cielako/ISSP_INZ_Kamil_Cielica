@@ -57,7 +57,7 @@ class PetUpdateForm(PetRegisterForm):
         """
         Edytuje i zapisuje obiekt bazodanowy z danych powiazanych
         z formularzem
-        """
+        """ 
         pet = super(PetUpdateForm, self).save(commit=False)
         if commit:
             # pet.pet_num = self.cleaned_data['pet_num']

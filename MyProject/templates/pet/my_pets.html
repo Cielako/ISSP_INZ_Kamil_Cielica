@@ -2,6 +2,7 @@
 {% load static%}
 {% load bootstrap5 %}
 
+
 {% block styles %}
     <link rel="stylesheet" href='{% static "css/index.css" %}'>
 {%endblock%}
@@ -40,7 +41,11 @@
         {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
         {% if item.owner_id == request.user.id%}
             <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
-                Imię: {{item.pet_name}}</p>
+                Imię: {{item.pet_name}} <br> 
+               
+                    Data dodania: {{item.add_date}} 
+                </p>
+                                        
             <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>
             <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button">Edytuj profil</a>
             <!-- Button trigger modal -->
@@ -59,4 +64,14 @@
             </script>    
         {% endif %}
     {% endfor %}
+    {% if list.has_previous %}
+            <a href="?page=1">&laquo Pierwsza</a>
+            <a href="?page={{list.previous_page_number}}">&laquo Poprzednia</a>
+    {% endif %}
+    Strona {{list.number}}  z {{list.paginator.num_pages}}
+    
+    {% if list.has_next %}
+        <a href="?page={{list.next_page_number}}">Następna</a>
+        <a href="?page={{list.paginator.num_pages}}">&raquo Ostatnia</a>
+{% endif %}
 {% endblock %}

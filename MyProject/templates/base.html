@@ -1,104 +1,107 @@
 <!-- Ta część ikodu odpowiada za załadowanie naszych plików statycznych czyli CSS, JS, zdjęć itp -->
 {% load static %}
 {% load bootstrap5 %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="pl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name ="author" content="Kamil Cielica">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>{% block title %} {% endblock %}</title>
+{% language 'pl' %}
+  <html lang="pl">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="description" content="">
+          <meta name="keywords" content="">
+          <meta name ="author" content="Kamil Cielica">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+          <title>{% block title %} {% endblock %}</title>
 
-        <!-- Font Awesome -->
-        <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
-        <link href="{% static 'fontawesome_free/css/all.css' %}" rel="stylesheet" type="text/css">
+          <!-- Font Awesome -->
+          <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+          <link href="{% static 'fontawesome_free/css/all.css' %}" rel="stylesheet" type="text/css">
 
-        <!-- Bootstrap JS CSS -->
-        {% bootstrap_javascript %}
-        {% bootstrap_css %}
+          <!-- Bootstrap JS CSS -->
+          {% bootstrap_javascript %}
+          {% bootstrap_css %}
 
-        <!-- Basic CSS-->
-        <link rel="stylesheet" href='{% static "css/style.css" %}'>
-        {% comment %} blok CSS {% endcomment %}
-        {% block styles %}{% endblock %}
+          <!-- Basic CSS-->
+          <link rel="stylesheet" href='{% static "css/style.css" %}'>
+          {% comment %} blok CSS {% endcomment %}
+          {% block styles %}{% endblock %}
 
-    </head>
+      </head>
 
-    <body>
-        <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top ">
-            <div class="container">
-                <!-- Mobile version toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                {% comment %} <i class="fas fa-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="font-size: 36px;"></i></a> <p>{{request.user.username}}</p>{% endcomment %}
-                
-                {%if request.user.is_authenticated %}
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-user" style="font-size: 36px;"></i></a> {{request.user.username}}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="{%url 'profile'%}">Profil użytkownika</a>
-                      <a class="dropdown-item" href="{%url 'my_pets'%}">Twoje zwierzęta</a>
-                      <a class="dropdown-item" href="{%url 'logout'%}">Wyloguj</a>
+      <body>
+          <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top ">
+              <div class="container">
+                  <!-- Mobile version toggler -->
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  {% comment %} <i class="fas fa-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="font-size: 36px;"></i></a> <p>{{request.user.username}}</p>{% endcomment %}
+                  
+                  {%if request.user.is_authenticated %}
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user" style="font-size: 36px;"></i></a> {{request.user.username}}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{%url 'profile'%}">Profil użytkownika</a>
+                        <a class="dropdown-item" href="{%url 'my_pets'%}">Twoje zwierzęta</a>
+                        <a class="dropdown-item" href="{%url 'logout'%}">Wyloguj</a>
+                      </div>
                     </div>
-                  </div>
-                {%else%}
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-user" style="font-size: 36px;"></i></a> Gość
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="{%url 'login'%}">Zaloguj się</a>
-                      <a class="dropdown-item" href="{%url 'register'%}">Zarejestruj się</a>
+                  {%else%}
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user" style="font-size: 36px;"></i></a> Gość
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{%url 'login'%}">Zaloguj się</a>
+                        <a class="dropdown-item" href="{%url 'register'%}">Zarejestruj się</a>
+                      </div>
                     </div>
+                  {%endif%}   
+                  <div class="collapse navbar-collapse" id="navbarResponsive">           
+                      <ul class="navbar-nav mx-auto">
+                          <li class="nav-item"><a class="nav-link active" href="{% url 'index'%}">Strona Główna</a></li>
+                          <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">O nas</a></li>
+                          <li class="nav-item"><a class="nav-link" href="{% url 'contact'%}">Kontakt</a></li>
+                      </ul>
+                      
+                          <!-- Navbar social icons  -->
+                      <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
+                          <li class="nav-item"><a class="nav-link p-1" href="https://github.com/Cielako" target="blank"><i class="fab fa-github" style="font-size: 36px;"></i></a></li>
+                          <li class="nav-item"><a class="nav-link p-1" href="https://www.instagram.com/Cielako/"target="blank"><i class="fab fa-instagram" style="font-size: 36px;"></i></a></li>
+                      </ul>
                   </div>
-                {%endif%}   
-                <div class="collapse navbar-collapse" id="navbarResponsive">           
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link active" href="{% url 'index'%}">Strona Główna</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">O nas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'contact'%}">Kontakt</a></li>
-                    </ul>
-                    
-                        <!-- Navbar social icons  -->
-                    <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-                        <li class="nav-item"><a class="nav-link p-1" href="https://github.com/Cielako" target="blank"><i class="fab fa-github" style="font-size: 36px;"></i></a></li>
-                        <li class="nav-item"><a class="nav-link p-1" href="https://www.instagram.com/Cielako/"target="blank"><i class="fab fa-instagram" style="font-size: 36px;"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+              </div>
+          </nav>
 
-        <!-- Site Sections -->
-        <div id="main">
-          {% comment %} Tutaj wywołujemy testowa wiadomość przy module logowania{% endcomment %}
-            {% if messages %}
-              {% for message in messages %}
-                {%if message.tags == 'success'%}
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{message}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                {%endif%}
-                {%if message.tags == 'error'%}
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{message}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                {%endif%}
-              {% endfor %}
-            {% endif %}
-            {% block main %}  {% endblock %}
-        </div>
-        <footer class="bg-light text-center text-lg-start ">
-            <!-- Copyright -->
-            <div class="text-center p-3">
-            &copy <script>document.write(new Date().getFullYear())</script> Copyright: <a href="https://github.com/Cielako">Cielako</a> 
-            </div>
-        </footer>
-    </body>
-</html>
+          <!-- Site Sections -->
+          <div id="main">
+            {% comment %} Tutaj wywołujemy testowa wiadomość przy module logowania{% endcomment %}
+              {% if messages %}
+                {% for message in messages %}
+                  {%if message.tags == 'success'%}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      {{message}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {%endif%}
+                  {%if message.tags == 'error'%}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{message}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {%endif%}
+                {% endfor %}
+              {% endif %}
+              {% block main %}  {% endblock %}
+          </div>
+          <footer class="bg-light text-center text-lg-start ">
+              <!-- Copyright -->
+              <div class="text-center p-3">
+              &copy <script>document.write(new Date().getFullYear())</script> Copyright: <a href="https://github.com/Cielako">Cielako</a> 
+              </div>
+          </footer>
+      </body>
+  </html>
+{% endlanguage %}

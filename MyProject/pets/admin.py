@@ -6,6 +6,6 @@ from .models import PetProfile
 class PetProfileAdmin(admin.ModelAdmin):
     list_display = ('pet_name', 'pet_num', 
                     'pet_desc', 'is_lost',
-                    'phone','email')
+                    'phone','email', 'add_date')
     
 admin.site.register(PetProfile, PetProfileAdmin)

@@ -1,21 +1,31 @@
-from django.shortcuts import render
-from .models import User, PetProfile
+import os
 from queue import Empty
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from .models import User, PetProfile, clean_old_image, delete_profile_dir
+
+# Import formularzy
 from .forms import PetRegisterForm, PetUpdateForm
+
+# Import Paginacji 
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 # Wykonujemy zapytanie o listę zwierząt danego użytkownika
 def my_pets(request):
-    pet_list = PetProfile.objects.filter(owner_id=request.user.id)
-    if pet_list is None:
+    pet_list = PetProfile.objects.filter(owner_id=request.user.id).order_by('-add_date')
+    
+    p = Paginator(pet_list, 1) 
+    page = request.GET.get('page')
+    pets = p.get_page(page)
+    
+    if pets is None:
         return render(request, 'pet/my_pets.html')
     else: 
-        return render(request, 'pet/my_pets.html', {'list' : pet_list })
+        return render(request, 'pet/my_pets.html', {'list' : pets })
 
 # Zapytanie o profil danego zwierzęcia (*pet_num i *pet_id - argumenty opcjonalne)
 def pet_profile(request, pet_num=None, pet_id=None):
@@ -38,7 +48,7 @@ def add_pet_profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = PetRegisterForm(request.POST, request.FILES)
-
+            
             if form.is_valid():
                 obj = form.save(commit=False)
                 obj.owner_id = request.user.id
@@ -46,7 +56,7 @@ def add_pet_profile(request):
                 messages.success(request, 'Dodano nowe zwierzę')
                 return redirect('my_pets')
             else:
-                print(form.errors)
+                messages.error(request, 'Nie możesz dodać zwierzęcia taki numer już istnieje')
         else:
             form = PetRegisterForm()
         return render(request, 'pet/add_pet.html', context={'form':form})    
@@ -57,9 +67,13 @@ def add_pet_profile(request):
 # Edytuje dane zwierze danego użytkownika    
 def edit_pet_profile(request, pet_id):
     profile = PetProfile.objects.get(pk=pet_id)
+    
     if request.user.is_authenticated and request.user.id == profile.owner_id:
         if request.method == 'POST':
             form = PetUpdateForm(request.POST, request.FILES, instance=profile)
+            if 'pet_image' in form.changed_data:
+                clean_old_image(profile.pet_image)
+                
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Pomyślnie edytowano zwierzę')
@@ -82,7 +96,7 @@ def del_pet_profile(request, pet_id=None):
         profile = PetProfile.objects.get(pk=pet_id)
         
         if request.user.id == profile.owner_id:
-            print(profile)
+            delete_profile_dir(profile.pet_image)
             profile.delete()
             messages.success(request, 'Pomyślnie usunięto zwierzę')
         else:
