@@ -36,7 +36,7 @@ class UserRegisterForm(UserCreationForm):
         required=True, 
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         error_messages = {
-                'min_length':"Podane hasło się nie zgadza"
+                'min_length':"Podane hasło jest zbyt krótkie"
                 })
     
     password2 = forms.CharField(

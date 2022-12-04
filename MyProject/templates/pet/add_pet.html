@@ -22,6 +22,7 @@
         <div class="mb-3">
             <label for="pet_image" class="form-label">Zdjęcie</label>
             {{ form.pet_image }}
+            <img src="{{form.initial.pet_image.url}}" height="500px" width="500px" alt="pet_image" id="pet_image_preview">
         </div>
         <div class="mb-3">
             <label for="pet_desc" class="form-label">Opis</label>
@@ -33,4 +34,13 @@
         </div>
         <button type="submit" class="btn btn-primary">Zarejestruj zwierze</button>
     </form>
+
+    <script>
+        const imgInput = document.querySelector("#id_pet_image")
+        const displayImg = document.querySelector("#pet_image_preview")
+        imgInput.addEventListener('change',
+        (event)=>{
+            const imgObject = event.target.files[0]
+            displayImg.src = URL.createObjectURL(imgObject)})
+    </script>
 {% endblock %}

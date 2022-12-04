@@ -17,13 +17,14 @@
     - [x] utworzenie własnego modelu użytkownika  - 28.10.2022
     - [x] testowa rejestracja użytkowników - 1.11.2022
 - [x] dodanie panelu administracyjnego użytkownika - edycja nieobowiązkowych informacji osobistych (telefon, imie, nazwisko, zmiana hasła) - 06.11.2022
-- [ ] praca nad tworzeniem bazowych funkcji aplikacji (profil danego zwierzęcia) - 15.11.2022
+- [x] praca nad tworzeniem bazowych funkcji aplikacji (profil danego zwierzęcia) - 15.11.2022
     - [x] Testowe wyświetlanie profilu danego zwierzęcia - (Rozpoczęto 13.11.2022)
     - [x] Testowe dodawanie zwierząt z profilu użytkownika (20.11.2022)
     - [x] Testowe usuwanie zwierząt z panelu użytkownika (26.11.2022)
     - [x] Testowa edycja profilu zwierzęcia (27.11.2022)
     - [x] Kompletne menu dodawania/edycji danego zwierzęcia - Testowe
-        -[x] Oczyszczanie folderu media (przy edycji / usunięciu zwierzęcia) (03.12.2022)
+        - [x] Oczyszczanie folderu media (przy edycji / usunięciu zwierzęcia) (03.12.2022)
+        - [x] Dodawanie/Edycja zwierzęcia Podgląd załączonego zdjęcia (04.12.2022)
     - [ ] Sekcja zwierząt zaginionych
     - [ ] Poprawa UI witryny 
     - [ ] Lokalizacja bugów i ich poprawa

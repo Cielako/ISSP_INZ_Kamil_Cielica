@@ -56,16 +56,21 @@ def user_register(request):
                 messages.success(request, 'Rejestracja Przebiegła pomyślnie')
                 return redirect('/')
             else:
-                error_list = [x for x in list(form.errors.values())[0]]
-                counter = sum('password' in s for s in error_list)
-                i=0
-                for error in error_list:
-                    if "password" in error:
-                        i+=1
-                        if i >= counter:
-                            messages.error(request, 'Twoje hasło nie spełnia wymagań')
-                    else:
-                        messages.error(request, error)
+                for value in form.errors:
+                    #print(form.errors[value].as_ul())
+                    messages.error(request, form.errors[value].as_ul())
+                # error_list = [x for x in list(form.errors.values())[0]]
+                # counter = sum('password' in s for s in error_list)
+                # i=0
+                # for error in error_list:
+                #     if "password" in error:
+                #         i+=1
+                #         if i >= counter:
+                #             messages.error(request, 'Twoje hasło nie spełnia wymagań')
+                #     else:
+                #         messages.error(request, error)
+                        
+                        
                 # error_list = [x for x in list(form.errors.values())[0] if x != "password"]
                 # for error in error_list:
                 #     if "password" in error:

@@ -5,7 +5,7 @@ class PetRegisterForm(forms.ModelForm):
     pet_num = forms.CharField(
         required=True,
         max_length=15,
-        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        widget=forms.NumberInput(attrs={'class': 'form-control'}), 
         error_messages = {
                 'unique' : "Taki numer chipa już istnieje.",
                 'max_length':"Wprowadzony numer chipa jest za długi."

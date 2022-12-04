@@ -79,8 +79,10 @@ def edit_pet_profile(request, pet_id):
                 messages.success(request, 'Pomyślnie edytowano zwierzę')
                 return redirect('my_pets')
             else:
-                print(form.errors)
-                messages.error(request, 'Wystąpił błąd przy edycji profilu.')
+                #messages.error(request, 'Wystąpił błąd przy edycji profilu.')
+                 for value in form.errors:
+                    # Zwracamy argument jako lista
+                    messages.error(request, form.errors[value].as_ul())
         else:
             form = PetUpdateForm(instance=profile)
         return render(request, 'pet/edit_profile.html', context={'form':form})
