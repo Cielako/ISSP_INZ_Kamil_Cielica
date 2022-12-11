@@ -124,7 +124,7 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] # nowy
 
 LANGUAGE_CODE = 'pl'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 

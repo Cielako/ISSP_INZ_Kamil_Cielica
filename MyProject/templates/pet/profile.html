@@ -17,9 +17,18 @@
            <p>Jesteś właścicielem</p>
         {% endif %}
         <p>Numer identyfikacyjny zwierzęcia: {{ item.pet_num }} <br>
+            Gatunek: {{item.pet_type}}</br>
             Imię: {{item.pet_name}} </br>
+            Płeć:    
+            {%if item.pet_sex == 'Samiec' %}
+                <i class="fa fa-mars"></i> 
+            {% elif item.pet_sex == 'Samica'%}
+                <i class="fa fa-venus"></i> 
+            {% endif %}{{item.pet_sex}}</br>
+            
             Numer telefonu właściciela: {{item.phone}}</br>
             Adres e-mail: {{item.email}}</br>
-            Opis: {{item.pet_desc}}</p>
+            Opis: {{item.pet_desc}}</br>
+            Województwo: {{item.region}}</br></p>
     {% endfor %}
 {% endblock %}

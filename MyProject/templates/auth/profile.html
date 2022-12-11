@@ -16,8 +16,12 @@
             {{ request.user.last_name }}
         </div>
         <div class="mb-3">
-            <label for="last_name" class="form-label">Numer telefonu:</label>
+            <label for="phone" class="form-label">Numer telefonu:</label>
             {{ request.user.phone }}
+        </div>
+        <div class="mb-3">
+            <label for="region" class="form-label">Województwo:</label>
+            {{ request.user.region }}
         </div>
         <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button">Edytuj</a>
         <a class="btn btn-primary" href="{%url 'password_change' %}" role="button">Zmień hasło</a>

@@ -22,7 +22,8 @@ class CustomAccountAdmin(UserAdmin):
                 'fields':(
                     'first_name',
                     'last_name',
-                    'phone'
+                    'phone',
+                    'region'
                 )
         }),
          ('Uprawnienia',

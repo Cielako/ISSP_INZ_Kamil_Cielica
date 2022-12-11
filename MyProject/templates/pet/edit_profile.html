@@ -16,13 +16,21 @@
             {{ form.pet_num }}
         </div>
         <div class="mb-3">
+            <label for="pet_type" class="form-label">Gatunek</label>
+            {{ form.pet_type }}
+        </div>
+        <div class="mb-3">
             <label for="pet_name" class="form-label">Imię</label>
             {{ form.pet_name }}
         </div>
         <div class="mb-3">
+            <label for="pet_sex" class="form-label">Płeć</label>
+            {{ form.pet_sex }}
+        </div>
+        <div class="mb-3">
             <label for="pet_image" class="form-label">Zdjęcie</label>
             {{ form.pet_image }}
-            <img src="{{form.initial.pet_image.url}}" height="500px" width="500px" alt="pet_image" id="pet_image_preview">
+            <img src="{{form.initial.pet_image.url}}" height="300px" width="300px" alt="pet_image" id="pet_image_preview">
         </div>
         <div class="mb-3">
             <label for="pet_desc" class="form-label">Opis</label>

@@ -81,10 +81,14 @@ class UserUpdateForm(forms.ModelForm):
         widget=PhoneNumberPrefixWidget(
             initial="PL", 
             attrs={'class': 'form-control'}), required=False)
-
+    
+    region = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=Account.RegionChoices.choices)
+    
     class Meta:
         model  = Account
-        fields = ['first_name', 'last_name', 'phone']
+        fields = ['first_name', 'last_name', 'phone', 'region']
    
 
 class UserPasswordChangeForm(SetPasswordForm):

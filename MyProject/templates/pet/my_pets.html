@@ -42,8 +42,8 @@
         {% if item.owner_id == request.user.id%}
             <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
                 Imię: {{item.pet_name}} <br> 
-               
-                    Data dodania: {{item.add_date}} 
+                Województw: {{item.region}} <br>
+                Data dodania: {{item.add_date}} 
                 </p>
                                         
             <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>

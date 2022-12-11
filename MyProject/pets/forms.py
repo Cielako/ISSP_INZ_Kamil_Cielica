@@ -10,12 +10,21 @@ class PetRegisterForm(forms.ModelForm):
                 'unique' : "Taki numer chipa już istnieje.",
                 'max_length':"Wprowadzony numer chipa jest za długi."
                  })
+    
+    pet_type = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=PetProfile.PetType.choices)
+    
     pet_name = forms.CharField(
         max_length=30,
         widget=forms.TextInput(attrs={'class': 'form-control'}), 
         error_messages = {
                 'max_length':"Wprowadzona nazwa jest za długa"
                  })
+    pet_sex = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=PetProfile.PetSex.choices)
+    
     pet_desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',"rows":5, "cols":20 }),
         max_length=255,
         error_messages = {
@@ -31,7 +40,7 @@ class PetRegisterForm(forms.ModelForm):
     
     class Meta:
         model = PetProfile
-        fields=['pet_num','pet_name', 'pet_desc', 'pet_image','is_lost']
+        fields=['pet_num','pet_type','pet_name', 'pet_sex', 'pet_desc', 'pet_image','is_lost']
     
     def save(self, commit: bool = True):
         """
@@ -51,8 +60,8 @@ class PetRegisterForm(forms.ModelForm):
 class PetUpdateForm(PetRegisterForm):
     class Meta:
         model = PetProfile
-        fields=['pet_num','pet_name', 'pet_desc', 'pet_image','is_lost']
-    
+        fields=['pet_num','pet_type','pet_name', 'pet_sex','pet_desc', 'pet_image','is_lost'] 
+        
     def save(self, commit: bool = True):
         """
         Edytuje i zapisuje obiekt bazodanowy z danych powiazanych
@@ -60,10 +69,5 @@ class PetUpdateForm(PetRegisterForm):
         """ 
         pet = super(PetUpdateForm, self).save(commit=False)
         if commit:
-            # pet.pet_num = self.cleaned_data['pet_num']
-            # pet.pet_name = self.cleaned_data['pet_name']
-            # pet.pet_desc = self.cleaned_data['pet_desc']
-            # pet.pet_image = self.cleaned_data['pet_image']
-            # pet.is_lost = self.cleaned_data['is_lost']
             pet.save()
         return pet
