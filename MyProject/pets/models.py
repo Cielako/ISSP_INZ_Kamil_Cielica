@@ -6,6 +6,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from phonenumber_field.modelfields import PhoneNumberField 
 
+from accounts.models import Account
+
 # Create your models here.
 
 # Tutaj Tworzymy model - czyli pojedyńczą porcje informacji o danych
@@ -44,13 +46,11 @@ def delete_profile_dir(instance):
 ''' Model Profilu oznakowanego zwierzęcia '''
 class PetProfile(models.Model):
     
-    class PetSex(models.TextChoices):
-        UNK='-----', _('-----')
+    class Sex(models.TextChoices):
         M='Samiec', _('Samiec')
         F='Samica',_('Samica')
         
-    class PetType(models.TextChoices):
-        UNK='-----', _('-----')
+    class Type(models.TextChoices):
         G='Gryzoń', _('Gryzoń')
         GA='Gad', _('Gad')
         K='Kot', _('Kot')
@@ -58,16 +58,15 @@ class PetProfile(models.Model):
         PT='Ptak', _('Ptak')
         I='Inny', _('Inny')
         
-
-    
     owner = models.ForeignKey(User, verbose_name='właściciel zwierzęcia', default=1, blank=True, on_delete=models.CASCADE)
     pet_num = models.CharField(verbose_name='numer chipu', max_length=15, unique=True)
     pet_name = models.CharField(verbose_name='imię zwierzęcia', max_length=30)
-    pet_type = models.CharField(verbose_name='Gatunek', max_length=6, choices=PetType.choices, default=PetType.UNK)
-    pet_sex = models.CharField(verbose_name='płeć', max_length=13, choices=PetSex.choices, default=PetSex.UNK)
+    pet_type = models.CharField(verbose_name='Gatunek', max_length=6, choices=Type.choices, default=Type.G)
+    pet_sex = models.CharField(verbose_name='płeć', max_length=13, choices=Sex.choices, default=Sex.M)
     pet_desc = models.TextField(verbose_name='opis zwierzęcia', max_length=500)
     pet_image = models.ImageField(verbose_name='zdjęcie', max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)    
     is_lost = models.BooleanField(verbose_name='status zaginięcia', default=False)
+    region = models.CharField(verbose_name='województwo', max_length=19, blank=False, choices=Account.RegionChoices.choices)
     add_date = models.DateField(verbose_name='data dodania', auto_now_add=True)
     
     
@@ -81,8 +80,7 @@ class PetProfile(models.Model):
     @property 
     def phone(self):
         return self.owner.phone
-    @property 
-    def region(self):
-        return self.owner.region
-
+    # @property 
+    # def region(self):
+    #     return self.owner.region
 

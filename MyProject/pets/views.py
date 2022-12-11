@@ -12,6 +12,9 @@ from .forms import PetRegisterForm, PetUpdateForm
 # Import Paginacji 
 from django.core.paginator import Paginator
 
+#Import filtrów
+from .filters import LostPetFilters
+
 # Create your views here.
 
 # Wykonujemy zapytanie o listę zwierząt danego użytkownika
@@ -52,11 +55,12 @@ def add_pet_profile(request):
             if form.is_valid():
                 obj = form.save(commit=False)
                 obj.owner_id = request.user.id
+                obj.region = request.user.region
                 obj.save()
                 messages.success(request, 'Dodano nowe zwierzę')
                 return redirect('my_pets')
             else:
-                messages.error(request, 'Nie możesz dodać zwierzęcia taki numer już istnieje')
+                 messages.error(request, 'Wystąpił błąd przy dodawaniu zwierzęcia')
         else:
             form = PetRegisterForm()
         return render(request, 'pet/add_pet.html', context={'form':form})    
@@ -105,7 +109,13 @@ def del_pet_profile(request, pet_id=None):
             messages.error(request, 'Nie masz dostępu do tej strony')
     return redirect('my_pets')
 
-
+def lost_pets(request):
+    listing = PetProfile.objects.filter(is_lost=True)
+    listing_filter = LostPetFilters(request.GET, queryset=listing)
+    context = {
+        'listing_filter' : listing_filter
+    }
+    return render(request, "pet/lost_pets.html", context)
 
 # def add_pet_profile(request):
 #     if(request.user.is_authenticated):

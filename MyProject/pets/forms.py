@@ -1,5 +1,6 @@
 from django import forms
 from .models import PetProfile
+from accounts.models import Account
 
 class PetRegisterForm(forms.ModelForm):
     pet_num = forms.CharField(
@@ -9,11 +10,12 @@ class PetRegisterForm(forms.ModelForm):
         error_messages = {
                 'unique' : "Taki numer chipa już istnieje.",
                 'max_length':"Wprowadzony numer chipa jest za długi."
-                 })
+                 }
+        )
     
     pet_type = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        choices=PetProfile.PetType.choices)
+        choices=PetProfile.Type.choices)
     
     pet_name = forms.CharField(
         max_length=30,
@@ -23,7 +25,7 @@ class PetRegisterForm(forms.ModelForm):
                  })
     pet_sex = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        choices=PetProfile.PetSex.choices)
+        choices=PetProfile.Sex.choices)
     
     pet_desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',"rows":5, "cols":20 }),
         max_length=255,
@@ -58,9 +60,13 @@ class PetRegisterForm(forms.ModelForm):
         return pet
 
 class PetUpdateForm(PetRegisterForm):
+    region = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=Account.RegionChoices.choices)
+    
     class Meta:
         model = PetProfile
-        fields=['pet_num','pet_type','pet_name', 'pet_sex','pet_desc', 'pet_image','is_lost'] 
+        fields=['pet_num','pet_type','pet_name', 'pet_sex','pet_desc', 'pet_image','is_lost', 'region'] 
         
     def save(self, commit: bool = True):
         """

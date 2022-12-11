@@ -25,7 +25,7 @@
     - [x] Kompletne menu dodawania/edycji danego zwierzęcia - Testowe
         - [x] Oczyszczanie folderu media (przy edycji / usunięciu zwierzęcia) (03.12.2022)
         - [x] Dodawanie/Edycja zwierzęcia Podgląd załączonego zdjęcia (04.12.2022)
-    - [ ] Sekcja zwierząt zaginionych
+    - [x] Sekcja zwierząt zaginionych (Testowa 11.12.2022 - filtrowanie po Płci/Miejscowości/Gatunku)
     - [ ] Poprawa UI witryny 
     - [ ] Lokalizacja bugów i ich poprawa
     

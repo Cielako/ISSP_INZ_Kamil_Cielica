@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'app',  # core aplikacji
     'accounts', # moduł uwierzytelnienia użytkowników
     'pets', # moduł profili zwierząt
+    'django_filters',
+    'widget_tweaks'
     #'accounts.apps.AccountsConfig',
 ]
 

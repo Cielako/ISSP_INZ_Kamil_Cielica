@@ -13,7 +13,7 @@ class Account(AbstractUser):
     # auto_now_add - ustawia datę w momencie utworzenia nowego obiektu
     
     class RegionChoices(models.TextChoices):
-        UNK='-----', _('-----')
+        UNK='Inna lokalizacja', _('Inna lokalizacja')
         DS='Dolnośląskie', _('Dolnośląskie')
         KP='Kujawsko-pomorskie', _('Kujawsko-pomorskie')
         LB='Lubelskie', _('Lubelskie')

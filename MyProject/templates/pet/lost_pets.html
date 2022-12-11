@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static%}
+{% load bootstrap5 %}
+{% load widget_tweaks %}
+
+
+
+{% block styles %}
+    <link rel="stylesheet" href='{% static "css/index.css" %}'>
+{%endblock%}
+
+{% block title %}Zaginione zwierzęta{% endblock %}
+
+{% block main %}
+        <form action="." method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="pet_num" class="form-label">Gatunek: </label>
+                {% render_field listing_filter.form.pet_type class="form-control" %}
+            </div>
+            <div class="mb-3">
+                <label for="pet_num" class="form-label">Płeć: </label>
+                {% render_field listing_filter.form.pet_sex class="form-control" %}
+            </div>
+            <div class="mb-3">
+                <label for="pet_num" class="form-label">Województwo: </label>
+                {% render_field listing_filter.form.region class="form-control" %}
+            </div>
+            <button type="submit" class="btn btn-primary">Filtruj</button>
+        </form>
+
+    <H1>Lista Zaginionych zwierząt:</H1>
+    {% for item in listing_filter.qs %}
+        <img src="/media/{{item.pet_image}}" width="200px">
+        <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
+                Imię: {{item.pet_name}} <br> 
+                Województwo: {{item.region}} <br>
+                Data dodania: {{item.add_date}} 
+        </p>
+                                        
+        <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>
+        <br>
+    {% endfor %} 
+{% endblock %}
