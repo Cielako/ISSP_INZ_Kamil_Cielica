@@ -3,7 +3,7 @@ from .models import PetProfile
 from accounts.models import Account
 
 class PetRegisterForm(forms.ModelForm):
-    pet_num = forms.CharField(
+    chip_number = forms.CharField(
         required=True,
         max_length=15,
         widget=forms.NumberInput(attrs={'class': 'form-control'}), 
@@ -23,17 +23,17 @@ class PetRegisterForm(forms.ModelForm):
         error_messages = {
                 'max_length':"Wprowadzona nazwa jest za długa"
                  })
-    pet_sex = forms.ChoiceField(
+    gender = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        choices=PetProfile.Sex.choices)
+        choices=PetProfile.Gender.choices)
     
-    pet_desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',"rows":5, "cols":20 }),
+    desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',"rows":5, "cols":20 }),
         max_length=255,
         error_messages = {
                 'max_length':"Wprowadzony opis zwierzęcia jest za długi"
-                 }
-    )
-    pet_image = forms.ImageField(
+                 })
+    
+    image = forms.ImageField(
         max_length=255,
         error_messages = {
                 'max_length':"Wprowadzony opis zwierzęcia jest za długi"
@@ -42,7 +42,7 @@ class PetRegisterForm(forms.ModelForm):
     
     class Meta:
         model = PetProfile
-        fields=['pet_num','pet_type','pet_name', 'pet_sex', 'pet_desc', 'pet_image','is_lost']
+        fields=['chip_number','pet_type','pet_name', 'gender', 'desc', 'image','is_lost']
     
     def save(self, commit: bool = True):
         """
@@ -51,10 +51,10 @@ class PetRegisterForm(forms.ModelForm):
         """
         pet = super(PetRegisterForm, self).save(commit=False)
         if commit:
-            # pet.pet_num = self.cleaned_data['pet_num']
+            # pet.chip_number = self.cleaned_data['chip_number']
             # pet.pet_name = self.cleaned_data['pet_name']
-            # pet.pet_desc = self.cleaned_data['pet_desc']
-            # pet.pet_image = self.cleaned_data['pet_image']
+            # pet.desc = self.cleaned_data['desc']
+            # pet.image = self.cleaned_data['image']
             # pet.is_lost = self.cleaned_data['is_lost']
             pet.save()
         return pet
@@ -66,7 +66,7 @@ class PetUpdateForm(PetRegisterForm):
     
     class Meta:
         model = PetProfile
-        fields=['pet_num','pet_type','pet_name', 'pet_sex','pet_desc', 'pet_image','is_lost', 'region'] 
+        fields=['chip_number','pet_type','pet_name', 'gender','desc', 'image','is_lost', 'region'] 
         
     def save(self, commit: bool = True):
         """

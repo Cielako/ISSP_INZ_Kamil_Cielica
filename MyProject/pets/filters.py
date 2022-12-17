@@ -8,7 +8,7 @@ class LostPetFilters(django_filters.FilterSet):
         model = PetProfile
         fields = {
             'pet_type': ['exact'], 
-            'pet_sex' : ['exact'],
+            'gender' : ['exact'],
             'region' : ['exact']
         }
         widgets = {

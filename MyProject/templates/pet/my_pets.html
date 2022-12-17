@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% load static%}
+{% comment %} {% load static%}
 {% load bootstrap5 %}
 
 
 {% block styles %}
     <link rel="stylesheet" href='{% static "css/index.css" %}'>
-{%endblock%}
+{%endblock%} {% endcomment %}
 
 {% block title %}Twoje zwierzęta{% endblock %}
 
@@ -21,7 +21,7 @@
             </button>
             </div>
             <div class="modal-body">
-                Czy na pewno chcesz usunąć wybrane zwierze ?
+                Czy na pewno chcesz usunąć wybrane zwierzę ?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
@@ -31,16 +31,16 @@
         </div>
     </div>
     <H1>Lista Twoich zwierząt:</H1>
-    {% if list == None %}
+    {% if pet_page_obj == None %}
         <p>Aktualnie nie masz żadnych zwierząt</p>
     {% endif %}
-    <a class="btn btn-primary" href="{% url 'add_pet_profile'%}" role="button">Dodaj nowe zwierze</a>
+    <a class="btn btn-primary" href="{% url 'add_pet_profile'%}" role="button">Dodaj nowe zwierzę</a>
     <br>
-    {% for item in list %}
-        <img src="/media/{{item.pet_image}}" width="200px">
+    {% for item in pet_page_obj %}
+        <img src="/media/{{item.image}}" width="200px">
         {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
         {% if item.owner_id == request.user.id%}
-            <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
+            <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a><br>
                 Imię: {{item.pet_name}} <br> 
                 Województwo: {{item.region}} <br>
                 Data dodania: {{item.add_date}} 
@@ -64,14 +64,14 @@
             </script>    
         {% endif %}
     {% endfor %}
-    {% if list.has_previous %}
+    {% if pet_page_obj.has_previous %}
             <a href="?page=1">&laquo Pierwsza</a>
-            <a href="?page={{list.previous_page_number}}">&laquo Poprzednia</a>
+            <a href="?page={{pet_page_obj.previous_page_number}}">&laquo Poprzednia</a>
     {% endif %}
-    Strona {{list.number}}  z {{list.paginator.num_pages}}
+    Strona {{pet_page_obj.number}}  z {{pet_page_obj.paginator.num_pages}}
     
-    {% if list.has_next %}
-        <a href="?page={{list.next_page_number}}">Następna</a>
-        <a href="?page={{list.paginator.num_pages}}">&raquo Ostatnia</a>
+    {% if pet_page_obj.has_next %}
+        <a href="?page={{pet_page_obj.next_page_number}}">Następna</a>
+        <a href="?page={{pet_page_obj.paginator.num_pages}}">&raquo Ostatnia</a>
 {% endif %}
 {% endblock %}

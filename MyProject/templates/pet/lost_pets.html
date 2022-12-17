@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% load static%}
-{% load bootstrap5 %}
+{% comment %} {% load static %}
+{% load bootstrap5 %} {% endcomment %}
 {% load widget_tweaks %}
+{% load pets_tags %}
 
 
 
-{% block styles %}
+{% comment %} {% block styles %}
     <link rel="stylesheet" href='{% static "css/index.css" %}'>
-{%endblock%}
+{%endblock%} {% endcomment %}
 
 {% block title %}Zaginione zwierzęta{% endblock %}
 
@@ -15,24 +16,24 @@
         <form action="." method="GET" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="pet_num" class="form-label">Gatunek: </label>
+                <label for="chip_number" class="form-label">Gatunek: </label>
                 {% render_field listing_filter.form.pet_type class="form-control" %}
             </div>
             <div class="mb-3">
-                <label for="pet_num" class="form-label">Płeć: </label>
-                {% render_field listing_filter.form.pet_sex class="form-control" %}
+                <label for="chip_number" class="form-label">Płeć: </label>
+                {% render_field listing_filter.form.gender class="form-control" %}
             </div>
             <div class="mb-3">
-                <label for="pet_num" class="form-label">Województwo: </label>
+                <label for="chip_number" class="form-label">Województwo: </label>
                 {% render_field listing_filter.form.region class="form-control" %}
             </div>
             <button type="submit" class="btn btn-primary">Filtruj</button>
         </form>
 
-    <H1>Lista Zaginionych zwierząt:</H1>
-    {% for item in listing_filter.qs %}
-        <img src="/media/{{item.pet_image}}" width="200px">
-        <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.pet_num }}</a><br>
+    <H1>Lista zaginionych zwierząt:</H1>
+    {% for item in pet_page_obj %}
+        <img src="/media/{{item.image}}" width="200px">
+        <p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a><br>
                 Imię: {{item.pet_name}} <br> 
                 Województwo: {{item.region}} <br>
                 Data dodania: {{item.add_date}} 
@@ -40,5 +41,14 @@
                                         
         <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>
         <br>
-    {% endfor %} 
+    {% endfor %}
+    {% if pet_page_obj.has_previous %}
+        <a href="{% filter_url 1 'page' request.GET.urlencode %}">&laquo Pierwsza</a>
+        <a href="{% filter_url pet_page_obj.previous_page_number 'page' request.GET.urlencode %}">&laquo Poprzednia</a>
+    {% endif %}
+    Strona {{pet_page_obj.number}} z {{pet_page_obj.paginator.num_pages}}
+    {% if pet_page_obj.has_next %}
+        <a href="{% filter_url pet_page_obj.next_page_number 'page' request.GET.urlencode %}">Następna</a>
+        <a href="{% filter_url pet_page_obj.pet_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo Ostatnia</a>
+    {% endif %} 
 {% endblock %}

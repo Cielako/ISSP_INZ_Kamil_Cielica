@@ -13,7 +13,7 @@ def index(request):
 # Zwracamy informacje o danym profilu 
 # def profile(request):
 #     req_data = request.POST.get('check_number', None)
-#     specific_data = Profile.objects.filter(pet_num=req_data).values()
+#     specific_data = Profile.objects.filter(chip_number=req_data).values()
 #     if specific_data is not Empty:
 #         return render(request, 'profile.html', {'all': specific_data})
 #     else:

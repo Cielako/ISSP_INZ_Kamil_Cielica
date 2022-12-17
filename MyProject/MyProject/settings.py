@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-nmopy(%)t=&+-@nbl_q$8i4bg80@cc@dauu5vum&_$=e%%5&&x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.87', '127.0.0.1']
 
 
 # Application definition

@@ -58,7 +58,7 @@ DATABASES = {
 >>> from django.contrib.auth.models import User
 >>> from app.models import Profile
 >>> user = User.objects.get(username='admin')
->>>profile=Profile(email='pietrek@gmail.com', phone='+48790790790', pet_id='123456789', pet_name='Andy', pet_desc='asjdahjdhasjajassajhd', is_lost=True)
+>>>profile=Profile(email='pietrek@gmail.com', phone='+48790790790', pet_id='123456789', pet_name='Andy', desc='asjdahjdhasjajassajhd', is_lost=True)
 >>>profile.save()
 
 # Użyte pakieciki  (pip freeze > requirements.txt )

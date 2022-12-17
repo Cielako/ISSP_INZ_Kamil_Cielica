@@ -11,4 +11,7 @@ git branch -d NAZWA2 - usuwamy brancha
 git push -u origin Frontend - wypychanmy nowego brancha
 
 
+ctrl + shift + h - zmiana nazw zmiennych np. w całym projekcie
+
+
 

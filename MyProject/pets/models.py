@@ -17,7 +17,7 @@ User = get_user_model()
 
 def get_profile_image_filepath(self, filename):
     # return f'profile_images/{self.pk}/{"profile_image.png"}'
-    return f'profile_images/{self.owner}/{self.pet_num}/"profile_pic.png"'
+    return f'profile_images/{self.owner}/{self.chip_number}/"profile_pic.png"'
     
 
 def get_default_profile_image():
@@ -46,7 +46,7 @@ def delete_profile_dir(instance):
 ''' Model Profilu oznakowanego zwierzęcia '''
 class PetProfile(models.Model):
     
-    class Sex(models.TextChoices):
+    class Gender(models.TextChoices):
         M='Samiec', _('Samiec')
         F='Samica',_('Samica')
         
@@ -59,12 +59,12 @@ class PetProfile(models.Model):
         I='Inny', _('Inny')
         
     owner = models.ForeignKey(User, verbose_name='właściciel zwierzęcia', default=1, blank=True, on_delete=models.CASCADE)
-    pet_num = models.CharField(verbose_name='numer chipu', max_length=15, unique=True)
+    chip_number = models.CharField(verbose_name='numer chipu', max_length=15, unique=True)
     pet_name = models.CharField(verbose_name='imię zwierzęcia', max_length=30)
     pet_type = models.CharField(verbose_name='Gatunek', max_length=6, choices=Type.choices, default=Type.G)
-    pet_sex = models.CharField(verbose_name='płeć', max_length=13, choices=Sex.choices, default=Sex.M)
-    pet_desc = models.TextField(verbose_name='opis zwierzęcia', max_length=500)
-    pet_image = models.ImageField(verbose_name='zdjęcie', max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)    
+    gender = models.CharField(verbose_name='płeć', max_length=13, choices=Gender.choices, default=Gender.M)
+    desc = models.TextField(verbose_name='opis zwierzęcia', max_length=500)
+    image = models.ImageField(verbose_name='zdjęcie', max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)    
     is_lost = models.BooleanField(verbose_name='status zaginięcia', default=False)
     region = models.CharField(verbose_name='województwo', max_length=19, blank=False, choices=Account.RegionChoices.choices)
     add_date = models.DateField(verbose_name='data dodania', auto_now_add=True)
@@ -72,7 +72,7 @@ class PetProfile(models.Model):
     
     
     def __str__(self):
-        return self.pet_num
+        return self.chip_number
     
     @property # Własności z modelu User
     def email(self):

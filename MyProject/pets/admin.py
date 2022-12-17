@@ -4,8 +4,8 @@ from .models import PetProfile
 # Register your models here.
 
 class PetProfileAdmin(admin.ModelAdmin):
-    list_display = ('pet_name', 'pet_num', 
-                    'pet_desc', 'is_lost',
+    list_display = ('pet_name', 'chip_number', 
+                    'desc', 'is_lost',
                     'phone','email', 'add_date')
     
 admin.site.register(PetProfile, PetProfileAdmin)
