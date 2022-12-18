@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Zaginione zwierzęta{% endblock %}
+
+{% block main %}
+        <form action="." method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="chip_number" class="form-label">Gatunek: </label>
+                {% render_field listing_filter.form.pet_type class="form-control" %}
+            </div>
+            <div class="mb-3">
+                <label for="chip_number" class="form-label">Płeć: </label>
+                {% render_field listing_filter.form.gender class="form-control" %}
+            </div>
+            <div class="mb-3">
+                <label for="chip_number" class="form-label">Województwo: </label>
+                {% render_field listing_filter.form.region class="form-control" %}
+            </div>
+            <button type="submit" class="btn btn-primary">Filtruj</button>
+        </form>
+
+    <H1>Lista zaginionych zwierząt:</H1>
+    {% for item in pet_page_obj %}
+        {# Wczytujemy szablon do listowania profili zwierząt #}
+        {% include 'template_parts/pet_prof_listing.html' %}
+        <br>
+    {% endfor %}
+
+    {# Wczytanie szablonu  paginacji stron #}
+    {% include 'template_parts/pagination.html' %}
+{% endblock %}

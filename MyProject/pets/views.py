@@ -26,16 +26,16 @@ from .filters import LostPetFilters
 def my_pets(request):
     pet_list = PetProfile.objects.filter(owner_id=request.user.id).order_by('-add_date')
     
-    return paginate(request, pet_list, 'pet/my_pets.html', 1, )
+    return paginate(request, pet_list, 'pets/my_pets.html', 1, )
 
     # p = Paginator(pet_list, 1) 
     # page = request.GET.get('page')
     # pets = p.get_page(page)
     
     # if pets is None:
-    #     return render(request, 'pet/my_pets.html')
+    #     return render(request, 'pets/my_pets.html')
     # else: 
-    #     return render(request, 'pet/my_pets.html', {'list' : pets })
+    #     return render(request, 'pets/my_pets.html', {'list' : pets })
 
 # Zapytanie o profil danego zwierzęcia (*chip_number i *pet_id - argumenty opcjonalne)
 def pet_profile(request, chip_number=None, pet_id=None):
@@ -48,7 +48,7 @@ def pet_profile(request, chip_number=None, pet_id=None):
         specific_data = PetProfile.objects.filter(id=pet_id)
     context = {'all' : specific_data}
     if specific_data:
-        return render(request, 'pet/profile.html', context)
+        return render(request, 'pets/profile.html', context)
     else:
         messages.error(request, 'Zwierze o podanym numerze nie istnieje')  
         return  redirect("/")
@@ -71,7 +71,7 @@ def add_pet_profile(request):
         else:
             form = PetRegisterForm()
             context={'form':form}
-        return render(request, 'pet/add_pet.html', context)    
+        return render(request, 'pets/add_pet.html', context)    
     else:
         messages.error(request, 'Nie możesz zarejestrować zwierzęcia, musisz być zalogowany.')
         return redirect('/')
@@ -98,7 +98,7 @@ def edit_pet_profile(request, pet_id):
         else:
             form = PetUpdateForm(instance=profile)
             context={'form':form}
-        return render(request, 'pet/edit_profile.html', context)
+        return render(request, 'pets/edit_profile.html', context)
         #     messages.success(request, 'Pomyślnie usunięto zwierzę')
     else:
         messages.error(request, 'Nie masz dostępu do tej strony')
@@ -131,10 +131,10 @@ def lost_pets(request):
     # page_number = request.GET.get('page')
     # pet_page_obj = pag_filtered_pets.get_page(page_number)
     # context['pet_page_obj'] = pet_page_obj
-    # return render(request, "pet/lost_pets.html", context)
+    # return render(request, "pets/lost_pets.html", context)
     listing = PetProfile.objects.filter(is_lost=True)
     listing_filter = LostPetFilters(request.GET, queryset=listing)
-    return paginate(request, listing_filter, 'pet/lost_pets.html', 2, True )
+    return paginate(request, listing_filter, 'pets/lost_pets.html', 1, True )
 
 
     #------------------------------------------------------
@@ -151,6 +151,6 @@ def lost_pets(request):
     # context = {
     #     'listing_filter' : pets
     # }
-    # return render(request, "pet/lost_pets.html", context)
+    # return render(request, "pets/lost_pets.html", context)
 
 

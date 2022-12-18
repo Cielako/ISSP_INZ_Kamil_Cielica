@@ -1,0 +1,75 @@
+{# paginator dla stron #}
+{% load pets_tags %}
+
+
+<nav aria-label="Page pet list">
+    <ul class="pagination justify-content-center">
+        {% if pet_page_obj.has_previous %}
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url 1 'page' request.GET.urlencode %}">Początek</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url pet_page_obj.previous_page_number 'page' request.GET.urlencode %}">&laquo</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url pet_page_obj.previous_page_number 'page' request.GET.urlencode %}">{{pet_page_obj.number|add:'-1'}}</a>
+            </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <a class="page-link" href="{{pet_page_obj.number}}"><strong>{{pet_page_obj.number}}</strong></a>
+        </li>
+        {% if pet_page_obj.has_next %}
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url pet_page_obj.next_page_number 'page' request.GET.urlencode %}">{{pet_page_obj.number|add:'1'}}</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url pet_page_obj.next_page_number 'page' request.GET.urlencode %}">&raquo</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="{% filter_url pet_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Koniec</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+
+{% comment %} <nav aria-label="Page pet list">
+    <ul class="pagination justify-content-center">
+        {% if pet_page_obj.has_previous %}
+            <li class="page-item ">
+                <a class="page-link" href="?page=1">Początek</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pet_page_obj.previous_page_number}}">&laquo</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pet_page_obj.previous_page_number}}">{{pet_page_obj.number|add:'-1'}}</a>
+            </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <a class="page-link" href="?page={{pet_page_obj.number}}"><strong>{{pet_page_obj.number}}</strong></a>
+        </li>
+        {% if pet_page_obj.has_next %}
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pet_page_obj.next_page_number}}">{{pet_page_obj.number|add:'1'}}</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pet_page_obj.next_page_number}}">&raquo</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pet_page_obj.paginator.num_pages}}">Koniec</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav> {% endcomment %}
+
+        {% comment %} {% if pet_page_obj.has_previous %}
+            <a href="{% filter_url 1 'page' request.GET.urlencode %}">&laquo Pierwsza</a>
+            <a href="{% filter_url pet_page_obj.previous_page_number 'page' request.GET.urlencode %}">&laquo Poprzednia</a>
+        {% endif %}
+        Strona {{pet_page_obj.number}} z {{pet_page_obj.paginator.num_pages}}
+        {% if pet_page_obj.has_next %}
+            <a href="{% filter_url pet_page_obj.next_page_number 'page' request.GET.urlencode %}">Następna</a>
+            <a href="{% filter_url pet_page_obj.pet_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo Ostatnia</a>
+        {% endif %} {% endcomment %}

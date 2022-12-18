@@ -34,7 +34,7 @@ def user_login(request):
                 messages.error(request, ("Podane dane logowania nie są poprawne"))
                 return redirect('login')
         else:
-            return render(request, 'auth/login.html')
+            return render(request, 'accounts/login.html')
     
 # Testowa Metoda do rejestracji - przykład metody z wykorzystaniem forms.py
 def user_register(request):
@@ -81,7 +81,7 @@ def user_register(request):
                 # messages.error(request, 'Rejestracja się nie powiodła, podano nieprawidłowe dane')
         else:
             form = UserRegisterForm()
-        return render(request, 'auth/register.html', context={'form':form})
+        return render(request, 'accounts/register.html', context={'form':form})
         
 def user_logout(request):
     logout(request)
@@ -93,7 +93,7 @@ def user_profile(request):
         messages.error(request, 'Zaloguj się, aby uzyskać dostęp do tej strony.')
         return redirect('/')
     else: 
-        return render(request, 'auth/profile.html')
+        return render(request, 'accounts/profile.html')
 
 # @login_required(login_url='/')
 def user_profile_edit(request):
@@ -110,7 +110,7 @@ def user_profile_edit(request):
                 messages.error(request, 'Wystąpił błąd przy edycji profilu.')
         else:
             form = UserUpdateForm(instance=request.user)
-        return render(request, 'auth/profile_edit.html', context={'form':form})
+        return render(request, 'accounts/profile_edit.html', context={'form':form})
     
 
 def user_password_change(request):
@@ -130,5 +130,5 @@ def user_password_change(request):
                     messages.error(request, "Twoje hasło nie spełnia wymagań")
 
         form = UserPasswordChangeForm(user)
-        return render(request, 'auth/password_change.html', {'form': form})
+        return render(request, 'accounts/password_change.html', {'form': form})
         

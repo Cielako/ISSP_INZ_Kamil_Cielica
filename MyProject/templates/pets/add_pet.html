@@ -1,12 +1,6 @@
 {% extends "base.html" %}
-{% comment %} {% load static %}
-{% load bootstrap5 %}
 
-{% block styles %}
-    <link rel="stylesheet" href='{% static "css/index.css" %}'>
-{%endblock%} {% endcomment %}
-
-{% block title %}Edytuj swoje zwierzę{% endblock %}
+{% block title %}Dodaj nowe zwierze{% endblock %}
 
 {% block main %}
     <form action="." method=POST enctype="multipart/form-data">
@@ -30,7 +24,7 @@
         <div class="mb-3">
             <label for="image" class="form-label">Zdjęcie</label>
             {{ form.image }}
-            <img src="{{form.initial.image.url}}" height="300px" width="300px" alt="image" id="image_preview">
+            <img src="{{form.initial.image.url}}" height="500px" width="500px" alt="image" id="image_preview">
         </div>
         <div class="mb-3">
             <label for="desc" class="form-label">Opis</label>
@@ -40,13 +34,9 @@
             <label for="desc" class="form-label">Zaginął</label>
             {{ form.is_lost }}
         </div>
-        <div class="mb-3">
-            <label for="desc" class="form-label">Województwo</label>
-            {{ form.region }}
-        </div>
-        <button type="submit" class="btn btn-primary">Edytuj zwierzę</button>
+        <button type="submit" class="btn btn-primary">Zarejestruj zwierze</button>
     </form>
-    
+
     <script>
         const imgInput = document.querySelector("#id_image")
         const displayImg = document.querySelector("#image_preview")

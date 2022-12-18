@@ -11,6 +11,6 @@ urlpatterns = [
     path('profile/', views.pet_profile, name='pet_profile'),
     path('delete-profile/?pet_id', views.del_pet_profile, name='del_pet_profile'),
     path('edit-profile/<int:pet_id>/', views.edit_pet_profile, name='edit_pet_profile'),
-    path('lost_pets/', views.lost_pets, name='lost_pets')
+    path('lost-pets/', views.lost_pets, name='lost_pets')
     
 ]
