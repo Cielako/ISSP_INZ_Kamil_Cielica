@@ -3,7 +3,7 @@
 {% block title %}Twoje zwierzęta{% endblock %}
 
 {% block main %}
-    <!-- Modal -->
+    <!-- Modal Delete -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -28,32 +28,38 @@
     {% if pet_page_obj == None %}
         <p>Aktualnie nie masz żadnych zwierząt</p>
     {% endif %}
-    <a class="btn btn-primary" href="{% url 'add_pet_profile'%}" role="button">Dodaj nowe zwierzę</a>
+    <a class="btn add btn-primary" href="{% url 'add_pet_profile'%}" role="button"><i class="fas fa-plus-circle"> </i> Dodaj nowe zwierzę</a>
     <br>
-    {% for item in pet_page_obj %}
-        {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
-        {% if item.owner_id == request.user.id %}
+    <div id="pets_container">
+        {% for item in pet_page_obj %}
+            {# Zwracamy dane jeśli użytkownik to właściciel #}
+            {% if item.owner_id == request.user.id %}
 
-            {# Wczytujemy szablon do listowania profili zwierząt #}
-            {% include 'template_parts/pet_prof_listing.html' %}
-            
-            <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button">Edytuj profil</a>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" id="{{item.id}}">
-                Usuń profil
-            </button>
-            <br>
-
-             {# Prosty skrypt do przekazywania id usuwanego zwierzęcia #}
-            <script type="text/javascript">
-                document.getElementById("exampleModalCenter").addEventListener('show.bs.modal', (e) => {
-                    console.log("id zwierzęcia:" + e.relatedTarget.id)
-                    var link = "{% url 'del_pet_profile'%}?pet_id=" +  e.relatedTarget.id;
-                    document.getElementById("delete").setAttribute("href", link);
-                });
-            </script>    
-        {% endif %}
-    {% endfor %}
+                {% block container %}
+                    {# Kontener #}
+                    <section class="pet_list p-2" onclick="javascript:window.location.href='{% url 'pet_profile'%}{{item.id}}'">
+                        {# Wczytujemy szablon do listowania profili zwierząt #}
+                        {% include 'template_parts/pet_prof_listing.html' %}
+                        <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button"><i class="far fa-edit"></i> Edytuj</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" id="{{item.id}}">
+                            <i class="far fa-trash-alt"></i> Usuń 
+                        </button>
+                        <br>
+                    </section>
+                {% endblock %}
+                {# Skrypt do przekazywania id usuwanego zwierzęcia #}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+        document.getElementById("exampleModalCenter").addEventListener('show.bs.modal', (e) => {
+            console.log("id zwierzęcia:" + e.relatedTarget.id)
+            var link = "{% url 'del_pet_profile'%}?pet_id=" +  e.relatedTarget.id;
+            document.getElementById("delete").setAttribute("href", link);
+        });
+    </script>      
+    
     {# Wczytanie szablonu  paginacji stron #}
     {% include 'template_parts/pagination.html' %}
 {% endblock %}

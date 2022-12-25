@@ -1,9 +1,10 @@
 {# Szablon profilu jako lista zwierząt #}
-<img src="/media/{{item.image}}" width="200px">
-<p>Numer identyfikacyjny zwierzęcia: <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a><br>
-    Imię: {{item.pet_name}} <br> 
-    Województwo: {{item.region}} <br>
-    Data dodania: {{item.add_date}} 
-</p>
-                            
-<a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button">Pokaż profil</a>
+<img src="/media/{{item.image}}">
+<data class="desc">
+        <span><b>Id zwierzęcia:</b> <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a></span><br/>
+        <span><b>Imię:</b> {{item.pet_name}}</span><br/>
+        <span><b>Województwo:</b> {{item.region}}</span><br/>
+        <span><b>Data dodania:</b> {{item.add_date}} </span> <br/>
+</data>
+<a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button" ><i class="fas fa-eye"></i> Pokaż</a>
+

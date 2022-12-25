@@ -9,6 +9,8 @@ body::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
 
+/*---------------------------*/
+
 /*Navigation Bar*/
 .navbar {
     width: auto;
@@ -30,23 +32,92 @@ body::-webkit-scrollbar {
     color: lightgray;
 }
 
+/*---------------------------*/
+
 /*Main*/
-#main {
+div#main {
     margin: auto;
     min-height: 75vh;
-    width: 60%;
-    position: static;  
+    width: 80%;
+    background-color: rgb(103, 110, 117);
 }
 
-#main #container {
+div#main h1 {
+    margin-left: 1em;
+}
+
+div#main a.add {
+    align-self: center;
+}
+
+div#main form{
+    margin: 1em;
+}
+
+
+/*---------------------------*/
+
+/*my-pets & lost-pets*/
+div#pets_container {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: auto;
+    width: 100%;
+    background-color: rgb(177, 207, 8);
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 900px){ 
+    div#pets_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div#pets_container .pet_list{
+        margin: 1em;
+    }
+}
+div#pets_container .pet_list{
+    display: block;
+    cursor: pointer;
+    align-self: center;
+    margin: 1em;
+    border-radius: 1em;
+    background-color: rgb(208, 216, 216);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     
 }
 
-footer {
-    height: 7vh;
+div#pets_container .pet_list img{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    border-radius:50%;
+    margin-bottom: 2em;
+    padding: 0.5em;
 }
 
 
+div#pets_container .pet_list .btn{
+    margin-top: 1em;
+    align-items: center;
+}
+
+/*---------------------------*/
+
+/*Pagination*/
+nav#pagination {
+    margin-top: 1em ;
+}
 
 
 

@@ -22,11 +22,17 @@
         </form>
 
     <H1>Lista zaginionych zwierząt:</H1>
-    {% for item in pet_page_obj %}
-        {# Wczytujemy szablon do listowania profili zwierząt #}
-        {% include 'template_parts/pet_prof_listing.html' %}
-        <br>
-    {% endfor %}
+    <div id="pets_container">
+        {% for item in pet_page_obj %}
+            {# Wczytujemy szablon do listowania profili zwierząt #}
+            {% block container %}
+                <section class="pet_list p-2"  onclick="javascript:window.location.href='{% url 'pet_profile'%}{{item.id}}'">
+                    {% include 'template_parts/pet_prof_listing.html' %}
+                    <br>
+                </section>
+            {% endblock %}
+        {% endfor %}
+    </div>
 
     {# Wczytanie szablonu  paginacji stron #}
     {% include 'template_parts/pagination.html' %}

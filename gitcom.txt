@@ -12,6 +12,7 @@ git push -u origin Frontend - wypychanmy nowego brancha
 
 
 ctrl + shift + h - zmiana nazw zmiennych np. w całym projekcie
+ctrl + h - zmiana nazw w danym pliku
 
 
 

@@ -1,0 +1,17 @@
+<form class="form-inline" action="{% url 'pet_profile'%}" method="POST" class="form-inline" id="search_bar" >
+    {% csrf_token %}
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-paw" style="font-size: 24px;"></i>
+            </div>
+        </div>
+        <label class="sr-only" for="check_number">Chip Number</label>
+        <input type="number" class="form-control" id="check_number" name="check_number" placeholder="Wpisz numer id zwierzęcia">
+        <div class="input-group-append">
+            <button type="submit" id="search-button" class="btn btn-dark">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>

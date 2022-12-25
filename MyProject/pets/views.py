@@ -26,7 +26,7 @@ from .filters import LostPetFilters
 def my_pets(request):
     pet_list = PetProfile.objects.filter(owner_id=request.user.id).order_by('-add_date')
     
-    return paginate(request, pet_list, 'pets/my_pets.html', 1, )
+    return paginate(request, pet_list, 'pets/my_pets.html', 4, )
 
     # p = Paginator(pet_list, 1) 
     # page = request.GET.get('page')
@@ -134,7 +134,7 @@ def lost_pets(request):
     # return render(request, "pets/lost_pets.html", context)
     listing = PetProfile.objects.filter(is_lost=True)
     listing_filter = LostPetFilters(request.GET, queryset=listing)
-    return paginate(request, listing_filter, 'pets/lost_pets.html', 1, True )
+    return paginate(request, listing_filter, 'pets/lost_pets.html', 4, True )
 
 
     #------------------------------------------------------
