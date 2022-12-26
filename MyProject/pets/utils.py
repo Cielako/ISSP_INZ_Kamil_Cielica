@@ -39,7 +39,7 @@ def paginate(request:HttpRequest, listing, template:str='index.html', psize:int=
     else:
         return render(request, template, context)
     
-    # [---LOST_PETS OLD VIEW----]
+    # [---LOST_PETS OLD VIEW---]
     
     # context = {}
     # listing = PetProfile.objects.filter(is_lost=True)

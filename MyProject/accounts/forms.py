@@ -15,7 +15,7 @@ class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
         required=True,
         max_length=35, 
-        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'np. test123'}), 
         error_messages = {
                 'unique' : "Taki użytkownik już istnieje.",
                 'max_length':"Nazwa użytkownika jest za długa."
@@ -24,7 +24,7 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(
         max_length=65, 
         required=True, 
-        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'np. test123@gmail.com'}),
         error_messages = {
                 'unique' : "Podany adres e-mail już został wykorzystany.",
                 'max_length':"adres e-mail jest za długi.",
@@ -34,7 +34,7 @@ class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         max_length=35, 
         required=True, 
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}),
         error_messages = {
                 'min_length':"Podane hasło jest zbyt krótkie"
                 })
@@ -42,7 +42,7 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(
         max_length=35, 
         required=True, 
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}))
     
     class Meta:
         model  = Account

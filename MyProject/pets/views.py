@@ -19,7 +19,7 @@ from .filters import LostPetFilters
 
 
         
- # ----Tu renderujemy widoki --------------   
+ # ----Tu renderujemy widoki----   
 
 # Wykonujemy zapytanie o listę zwierząt danego użytkownika
 
@@ -132,7 +132,7 @@ def lost_pets(request):
     # pet_page_obj = pag_filtered_pets.get_page(page_number)
     # context['pet_page_obj'] = pet_page_obj
     # return render(request, "pets/lost_pets.html", context)
-    listing = PetProfile.objects.filter(is_lost=True)
+    listing = PetProfile.objects.filter(is_lost=True).order_by('-add_date')
     listing_filter = LostPetFilters(request.GET, queryset=listing)
     return paginate(request, listing_filter, 'pets/lost_pets.html', 4, True )
 

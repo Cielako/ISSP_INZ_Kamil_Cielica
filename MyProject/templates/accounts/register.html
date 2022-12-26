@@ -1,31 +1,42 @@
 {% extends "base.html" %}
 
-{% block main %} 
-    <form method=POST action="" >
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="username" class="form-label">Nazwa użytkownika</label>
-            {{form.username}}
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Adres E-mail</label>
-            {{form.email}}
-        </div>
-        <div class="mb-3">
-            <label for="password1" class="form-label">Hasło</label>
-            {{form.password1}}
-        </div>
-        <ul>
-            <li>Twoje hasło nie powinno pokrywać się z Twoimi danymi </li>
-            <li>Twoje hasło powinno się składać z minimum 8 znaków</li>
-            <li>Twoje hasło nie powinno być zbyt powszechne</li>
-            <li>Twoje hasło nie powinno zawierać samych cyfr</li>
-        </ul>
-        <div class="mb-3">
-            <label for="password2" class="form-label">Powtórz Hasło</label>
-            {{form.password2}}
-        </div>
-        <p>Hasła musza się zgadzać</p>
-        <button type="submit" class="btn btn-primary">Zarejestruj</button>
-    </form>
+{% block main %}
+    <div class="cred-form rounded-3 "> 
+        <form method=POST action="" >
+            {% csrf_token %}
+            <label for="username" class="form-label"> <strong>Nazwa użytkownika</strong></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                {{form.username}}
+            </div>
+            <label for="email" class="form-label"> <strong>Adres E-mail</strong></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                {{form.email}}
+            </div>
+            <label for="password1" class="form-label"><strong>Hasło</strong></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                {{form.password1}}
+            </div>
+            <ul>
+                <li>Twoje hasło nie powinno pokrywać się z Twoimi danymi </li>
+                <li>Twoje hasło powinno się składać z minimum 8 znaków</li>
+                <li>Twoje hasło nie powinno być zbyt powszechne</li>
+                <li>Twoje hasło nie powinno zawierać samych cyfr</li>
+            </ul>
+            <label for="password2" class="form-label"><strong>Powtórz Hasło</strong></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                {{form.password2}}
+            </div>
+            <p>Oba hasła musza się zgadzać</p>
+            <div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-primary rounded-pill">Zarejestruj się</button>
+            </div>
+            <div class="text-center">
+                <p>Masz już konto? <a href="{%url 'login'%}">Zaloguj sie</a></p>
+            </div>
+        </form>
+    </div>
 {% endblock %}

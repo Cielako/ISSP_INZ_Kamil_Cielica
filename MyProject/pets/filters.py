@@ -9,7 +9,7 @@ class LostPetFilters(django_filters.FilterSet):
         fields = {
             'pet_type': ['exact'], 
             'gender' : ['exact'],
-            'region' : ['exact']
+            'region' : ['exact'],
         }
         widgets = {
             'pet_type' : forms.Select(attrs={'class':'form-control'})

@@ -1,6 +1,7 @@
 <!-- Ta część ikodu odpowiada za załadowanie naszych plików statycznych czyli CSS, JS, zdjęć itp -->
 {% load static %}
 {% load bootstrap5 %}
+
 <!DOCTYPE html>
   <html lang="pl">
       <head>
@@ -27,7 +28,7 @@
       </head>
 
       <body>
-          <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top ">
+          <nav class="navbar bg-light navbar-light navbar-expand-lg sticky-top shadow-sm p-3 mb-5 bg-body-tertiary rounded">
               <div class="container">
                   <!-- Mobile version toggler -->
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,28 +75,27 @@
               </div>
           </nav>
 
-          
+          {# Pasek Wyszukiwania #}
+          {% include 'template_parts/search_bar.html' %}
+
+           {% comment %} Tutaj wywołujemy testowa wiadomość przy module logowania {% endcomment %}
+           {% if messages %}
+           {% for message in messages %}
+             {%if message.tags == 'success'%}
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 {{message}}
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+             {%endif%}
+             {%if message.tags == 'error'%}
+               <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                 {{message}}
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+             {%endif%}
+           {% endfor %}
+         {% endif %}
           <div id="main">
-            {% comment %} Tutaj wywołujemy testowa wiadomość przy module logowania {% endcomment %}
-              {% if messages %}
-                {% for message in messages %}
-                  {%if message.tags == 'success'%}
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                      {{message}}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                  {%endif%}
-                  {%if message.tags == 'error'%}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      {{message}}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                  {%endif%}
-                {% endfor %}
-              {% endif %}
-              
-              {# Pasek Wyszukiwania #}
-              {% include 'template_parts/search_bar.html' %}
               {% block main %}
                     {% block container %} {% endblock %} 
               {% endblock %}

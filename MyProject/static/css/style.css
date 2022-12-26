@@ -9,9 +9,7 @@ body::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
 
-/*---------------------------*/
-
-/*Navigation Bar*/
+/*---------Navigation Bar--------*/
 .navbar {
     width: auto;
     height: auto;
@@ -31,15 +29,29 @@ body::-webkit-scrollbar {
 .navbar-light .navbar-nav .nav-item > .nav-link:hover {
     color: lightgray;
 }
-
-/*---------------------------*/
-
-/*Main*/
-div#main {
+/*--------Search Bar---------*/
+form#search-bar{
     margin: auto;
-    min-height: 75vh;
+    margin-top: -1.5em;
+    width: 40%;
+}
+/*--------Alert---------*/
+.alert{
+    margin: auto;
+    margin-top: 1em;
+    width: 45%;
+    margin-bottom: 1em;
+}
+
+/*--------Main---------*/
+div#main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-bottom: 1em;
     width: 80%;
-    background-color: rgb(103, 110, 117);
+    min-height: 75vh;
+    padding-bottom: 0.25em;
 }
 
 div#main h1 {
@@ -55,41 +67,29 @@ div#main form{
 }
 
 
-/*---------------------------*/
-
-/*my-pets & lost-pets*/
-div#pets_container {
+/*--------my-pets & lost-pets--------*/
+div#pets-container {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: center;
     margin: auto;
     width: 100%;
-    background-color: rgb(177, 207, 8);
-    justify-content: space-between;
+    /*background-color: rgb(177, 207, 8);*/
 }
 
-@media only screen and (max-width: 900px){ 
-    div#pets_container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    div#pets_container .pet_list{
-        margin: 1em;
-    }
-}
-div#pets_container .pet_list{
+div#pets-container .pet-list{
     display: block;
     cursor: pointer;
-    align-self: center;
     margin: 1em;
     border-radius: 1em;
-    background-color: rgb(208, 216, 216);
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    background-color: rgb(233 239 239); /*Wcześniej był rgb(208, 216, 216);*/
+    box-shadow: 
+    rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     
 }
 
-div#pets_container .pet_list img{
+div#pets-container .pet-list img{
     display: block;
     margin: auto;
     width: 200px;
@@ -101,25 +101,76 @@ div#pets_container .pet_list img{
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
-    border-radius:50%;
     margin-bottom: 2em;
     padding: 0.5em;
 }
 
 
-div#pets_container .pet_list .btn{
+div#pets-container .pet-list .btn{
     margin-top: 1em;
     align-items: center;
 }
 
-/*---------------------------*/
-
-/*Pagination*/
+/*----------Pagination-----------*/
 nav#pagination {
-    margin-top: 1em ;
+   display: block;
+   margin-top: 1em;
 }
 
+/*----------Login/Register Form-----------*/
 
+.cred-form {
+    margin: auto;
+    padding: 1em;
+    width: 40%;
+    background-color: rgb(233 239 239);
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.cred-form  form .btn {
+    margin-bottom: 1em;
+}
+
+/*----------Mobile Version-----------*/
+@media only screen and (max-width: 900px){ 
+
+    div#main {
+        margin: 1em;
+        width: auto;
+        min-height: auto;
+    }
+    form#search-bar {
+        width: 90%;
+    }
+    .alert {
+        width: 90%;
+    }
+
+    div#pets-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div#pets-container .pet-list{
+        margin: 1em;
+    }
+
+    nav#pagination {
+        margin-top: 1em;
+        display: block;
+    }
+
+    .cred-form {
+        width: auto;
+    }
+}
 
 
 
