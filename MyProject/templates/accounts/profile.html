@@ -1,28 +1,48 @@
 {% extends "base.html" %}
 
 
-{% block title %}Edytuj Profil{% endblock title %}
+{% block title %}Profil{% endblock title %}
 
 {% block main %}
     <H1>Twój profil użytkownika</H1> 
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="first_name" class="form-label">Imię:</label>
-            {{ request.user.first_name }}
-        </div>
-        <div class="mb-3">
-            <label for="last_name" class="form-label">Nazwisko: </label>
-            {{ request.user.last_name }}
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Numer telefonu:</label>
-            {{ request.user.phone }}
-        </div>
-        <div class="mb-3">
-            <label for="region" class="form-label">Województwo:</label>
-            {{ request.user.region }}
-        </div>
-        <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button">Edytuj</a>
-        <a class="btn btn-primary" href="{%url 'password_change' %}" role="button">Zmień hasło</a>
-    
+    {% block container %}
+        <section id="user-profile" class="border border-5">
+            <div id="u-profile-left" class="col-sm-4">
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">Nazwa użytkownika:</label>
+                    <p>{{ request.user }}</p>
+                </div>
+            </div>
+            
+            <div id="u-profile-right" class="col-sm-8">
+                <div class="row m-2">
+                    <h6 class="border-bottom p-2">Podstawowe informacje</h6>
+                    <div class="col-sm-6 mb-3">
+                        <p class="f-w-600">Imię</p>
+                        <h6 class="text-muted">{{ request.user.first_name }}</h6> 
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        
+                        <p class="f-w-600">Nazwisko</p>
+                        <h6 class="text-muted">{{ request.user.last_name }}</h6> 
+                    </div>
+                </div>
+
+                <div class="row  m-2">
+                    <h6 class="border-bottom p-2">Dane kontaktowe</h6>
+                    <div class="col-sm-6 mb-3">
+                        <p class="f-w-600">Telefon</p>
+                        <h6 class="text-muted">{{ request.user.phone }}</h6> 
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <p class="f-w-600">Województwo:</p>
+                        <h6 class="text-muted">{{ request.user.region }}</h6> 
+                    </div>
+                </div>
+                <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button">Edytuj</a>
+                <a class="btn btn-primary" href="{%url 'password_change' %}" role="button">Zmień hasło</a>
+            </div>
+        </section>
+    {% endblock %}
 {% endblock %}
