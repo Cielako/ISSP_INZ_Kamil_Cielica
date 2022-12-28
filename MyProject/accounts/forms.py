@@ -95,12 +95,12 @@ class UserPasswordChangeForm(SetPasswordForm):
     new_password1 = forms.CharField(
         max_length=35, 
         required=True, 
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}))
     
     new_password2 = forms.CharField(
         max_length=35, 
         required=True, 
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}))
     
     class Meta:
         model = get_user_model()

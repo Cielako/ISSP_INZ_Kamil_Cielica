@@ -37,13 +37,22 @@
                   {% comment %} <i class="fas fa-user" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="font-size: 36px;"></i></a> <p>{{request.user.username}}</p>{% endcomment %}
                   
                   {%if request.user.is_authenticated %}
-                    <div class="dropdown" style="width='10px'">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user" style="font-size: 36px;"></i></a> {{request.user.username}}
+                    <div class="dropdown">
+                      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="f-w-600">  
+                          <i class="fas fa-user" style="font-size: 36px;"></i>
+                            {% if request.user.is_superuser%}
+                              Administrator 
+                            {% else %}
+                              Moje konto
+                              {% comment %} {{request.user.username}} {% endcomment %}
+                            {% endif %}
+                         </span> 
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{%url 'profile'%}">Pokaż profil</a>
                         <a class="dropdown-item" href="{%url 'my_pets'%}">Twoje zwierzęta</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{%url 'logout'%}">Wyloguj</a>
                       </div>
                     </div>
@@ -61,7 +70,7 @@
                   <div class="collapse navbar-collapse" id="navbarResponsive">           
                       <ul class="navbar-nav mx-auto">
                           <li class="nav-item"><a class="nav-link active" href="{% url 'index'%}">Strona Główna</a></li>
-                          <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">O nas</a></li>
+                          <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">O stronie</a></li>
                           <li class="nav-item"><a class="nav-link" href="{% url 'lost_pets'%}">Zaginione</a></li>
                           {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact'%}">Kontakt</a></li> {% endcomment %}
                       </ul>
