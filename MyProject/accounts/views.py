@@ -106,6 +106,7 @@ def user_profile_edit(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Twój profil został edytowany pomyślnie.')
+                return redirect('profile')
             else:
                 messages.error(request, 'Wystąpił błąd przy edycji profilu.')
         else:

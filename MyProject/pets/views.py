@@ -89,7 +89,8 @@ def edit_pet_profile(request, pet_id):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Pomyślnie edytowano zwierzę')
-                return redirect('my_pets')
+                # return redirect(request.META.get('HTTP_REFERER'))
+                return redirect('pet_profile', profile.pk)
             else:
                 #messages.error(request, 'Wystąpił błąd przy edycji profilu.')
                  for value in form.errors:
@@ -98,7 +99,7 @@ def edit_pet_profile(request, pet_id):
         else:
             form = PetUpdateForm(instance=profile)
             context={'form':form}
-        return render(request, 'pets/edit_profile.html', context)
+        return render(request, 'pets/edit_pet.html', context)
         #     messages.success(request, 'Pomyślnie usunięto zwierzę')
     else:
         messages.error(request, 'Nie masz dostępu do tej strony')

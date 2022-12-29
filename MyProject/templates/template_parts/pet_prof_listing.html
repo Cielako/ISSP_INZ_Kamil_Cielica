@@ -1,7 +1,7 @@
 {# Szablon profilu jako lista zwierząt #}
 <img class="rounded-circle" src="/media/{{item.image}}">
 <data class="desc">
-        <span><b>Id zwierzęcia:</b> <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a></span><br/>
+        <span><b>Mikroczip:</b> <a href="{% url 'pet_profile'%}{{ item.id }}">{{ item.chip_number }}</a></span><br/>
         <span><b>Imię:</b> {{item.pet_name}}</span><br/>
         <span><b>Województwo:</b> {{item.region}}</span><br/>
         <span><b>Data dodania:</b> {{item.add_date}} </span> <br/>

@@ -5,25 +5,71 @@
 {% block main %}
     {% block container %}
         {% for item in all %}
-            <img src="/media/{{item.image}}" width="200px">
-            {% comment %} Tutaj wyświetlamy dane zwierzęcia, właściciel otrzymuje komunikat "Jesteś właścicielem" {% endcomment %}
-            {% if item.owner_id == request.user.id%}
-            <p>Jesteś właścicielem</p>
-            {% endif %}
-            <p>Numer identyfikacyjny zwierzęcia: {{ item.chip_number }} <br>
-                Gatunek: {{item.pet_type}}</br>
-                Imię: {{item.pet_name}} </br>
-                Płeć:    
-                {%if item.gender == 'Samiec' %}
-                    <i class="fa fa-mars"></i> 
-                {% elif item.gender == 'Samica'%}
-                    <i class="fa fa-venus"></i> 
-                {% endif %}{{item.gender}}</br>
+            <section id="pet-profile" class="rounded border border-5">
+                <div id="p-profile-left" class="col-sm-4">
+                    <div class="row m-2 p-4">
+                        <div class="col">
+                            <img src="/media/{{item.image}}">
+                        </div>
+                    </div>
+                </div>
                 
-                Numer telefonu właściciela: {{item.phone}}</br>
-                Adres e-mail: {{item.email}}</br>
-                Opis: {{item.desc}}</br>
-                Województwo: {{item.region}}</br></p>
+                <div id="p-profile-right" class="col-sm-8">
+                    <div class="row m-2">
+                        <h6 class="border-bottom p-2">Podstawowe informacje</h6>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Mikroczip</p>
+                            <h6 class="text-muted">{{ item.chip_number }}</h6> 
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Imię</p>
+                            <h6 class="text-muted">{{ item.pet_name }}</h6> 
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Płeć</p>
+                            <h6 class="text-muted">
+                                {%if item.gender == 'Samiec' %}
+                                    <i class="fa fa-mars gen-col-m"></i> 
+                                {% elif item.gender == 'Samica'%}
+                                    <i class="fa fa-venus gen-col-f"></i> 
+                                {% endif %}{{item.gender}}
+                            </h6> 
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Gatunek</p>
+                            <h6 class="text-muted">{{ item.pet_type }}</h6> 
+                        </div>
+                    </div>
+
+                    <div class="row m-2">
+                        <h6 class="border-bottom p-2">Opis</h6>
+                        <div class="col-sm-6 mb-3">
+                            <h6 class="text-muted">{{ item.desc }}</h6> 
+                        </div>
+                    </div>
+
+                    <div class="row m-2">
+                        <h6 class="border-bottom p-2">Dane kontaktowe</h6>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Telefon</p>
+                            <h6 class="text-muted">{{ item.phone }}</h6> 
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Adres e-mail</p>
+                            <h6 class="text-muted">{{ item.email }}</h6> 
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <p class="f-w-600">Województwo:</p>
+                            <h6 class="text-muted">{{ item.region }}</h6> 
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        {% if item.owner_id == request.user.id%}
+                            <a class="btn btn-primary" href="{% url 'edit_pet_profile' item.id%}" role="button">Edytuj</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
         {% endfor %}
     {% endblock %}
 {% endblock %}
