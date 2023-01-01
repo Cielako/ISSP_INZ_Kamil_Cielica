@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <div class="cred-form rounded-3 "> 
+    <div class="cred-form border rounded border-3 shadow "> 
         <form method=POST action="" >
             {% csrf_token %}
-            <label for="username" class="form-label"> <strong>Nazwa użytkownika</strong></label>
+            <label for="username" class="form-label"> <h6 class="border-bottom p-2">Nazwa użytkownika</h6></label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                 {{form.username}}
             </div>
-            <label for="email" class="form-label"> <strong>Adres E-mail</strong></label>
+            <label for="email" class="form-label"> <h6 class="border-bottom p-2">Adres E-mail</h6></label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                 {{form.email}}
             </div>
-            <label for="password1" class="form-label"><strong>Hasło</strong></label>
+            <label for="password1" class="form-label"><h6 class="border-bottom p-2">Hasło</h6></label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                 {{form.password1}}
@@ -25,7 +25,7 @@
                 <li>Twoje hasło nie powinno być zbyt powszechne</li>
                 <li>Twoje hasło nie powinno zawierać samych cyfr</li>
             </ul>
-            <label for="password2" class="form-label"><strong>Powtórz Hasło</strong></label>
+            <label for="password2" class="form-label"><h6 class="border-bottom p-2">Powtórz Hasło</h6></label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                 {{form.password2}}
@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-primary rounded-pill">Zarejestruj się</button>
             </div>
             <div class="text-center">
-                <p>Masz już konto? <a href="{%url 'login'%}">Zaloguj sie</a></p>
+                <p>Masz już konto? <a href="{%url 'login'%}">Zaloguj się</a></p>
             </div>
         </form>
     </div>

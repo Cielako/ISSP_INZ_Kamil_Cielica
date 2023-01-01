@@ -82,16 +82,18 @@ div#main form{
 /*--------my-pets & lost-pets--------*/
 div#pets-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: row;
     justify-content: center;
     margin: auto;
-    width: 100%;
+    width:auto
     /*background-color: rgb(177, 207, 8);*/
 }
 
 div#pets-container .pet-list{
     display: block;
     cursor: pointer;
+    width: auto;
+    height: auto;
     margin: 1em;
     border-radius: 1em;
     background-color: rgb(235 235 235); /*rgb(233 239 239);*/ /*Wcześniej był rgb(208, 216, 216);*/
@@ -135,27 +137,29 @@ nav#pagination {
     margin: auto;
     padding: 1em;
     width: 40%;
-    background-color: rgb(233 239 239);
-    box-shadow:
+    background-color: rgb(248, 248, 248);
+    /* background-color: #d6dadf; */
+    /* background-color: rgb(233 239 239); */
+    /* box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+    0 100px 80px rgba(0, 0, 0, 0.12); */
 }
 
 .cred-form  form .btn {
     margin-bottom: 1em;
 }
-
-/*----------User Profile-----------*/
-section#user-profile {
+/*----------Profile-----------*/
+section.profile {
     display: flex;
     width: auto;
     height: auto;
     margin: auto;
 }
+/*----------User Profile-----------*/
 
 #u-profile-left {
     width: auto;
@@ -189,14 +193,29 @@ section#user-profile {
     background-color: rgb(248, 248, 248);    
 }
 
-
-/*----------Pet Profile-----------*/
-section#pet-profile {
+/*----------User Profile Edit-----------*/
+#user-edit{
     display: flex;
     width: auto;
     height: auto;
     margin: auto;
+    justify-content: center;
+    padding: 1em;
+    background-color: rgb(248, 248, 248);
+    
 }
+#user-edit #contact {
+    display: flex;
+    flex-direction: row;
+}
+
+#user-edit .half {
+   width: 50%;
+}
+
+
+
+/*----------Pet Profile-----------*/
 
 #p-profile-left {
     width: auto;
@@ -262,17 +281,21 @@ section#pet-profile {
         width: auto;
     }
 
-    section#user-profile{
-        flex-direction: column;
-    }
-
-    section#pet-profile{
+    section.profile{
         flex-direction: column;
     }
 
     #p-profile-left div{
         width: auto;
       height: auto;
+    }
+
+    #user-edit #contact {
+        display: flex;
+        flex-direction: column;
+    }
+    #user-edit .half {
+        width: auto;
     }
 }
 

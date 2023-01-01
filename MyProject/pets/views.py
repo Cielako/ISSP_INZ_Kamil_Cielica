@@ -1,6 +1,6 @@
 import os
 from queue import Empty
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
@@ -50,7 +50,7 @@ def pet_profile(request, chip_number=None, pet_id=None):
     if specific_data:
         return render(request, 'pets/profile.html', context)
     else:
-        messages.error(request, 'Zwierze o podanym numerze nie istnieje')  
+        messages.error(request, 'Zwierzę o podanym numerze nie istnieje')  
         return  redirect("/")
        
 # Dodaje nowe zwierze dla aktualnie zalogowanego użytkowinka    
@@ -83,10 +83,12 @@ def edit_pet_profile(request, pet_id):
     if request.user.is_authenticated and request.user.id == profile.owner_id:
         if request.method == 'POST':
             form = PetUpdateForm(request.POST, request.FILES, instance=profile)
-            if 'image' in form.changed_data:
-                clean_old_image(profile.image)
+            # if 'image' in form.changed_data:
+            #     clean_old_image(profile.image)
                 
-            if form.is_valid():
+            if form.is_valid() :
+                if 'image' in form.changed_data:
+                    clean_old_image(profile.image)
                 form.save()
                 messages.success(request, 'Pomyślnie edytowano zwierzę')
                 # return redirect(request.META.get('HTTP_REFERER'))
@@ -96,11 +98,10 @@ def edit_pet_profile(request, pet_id):
                  for value in form.errors:
                     # Zwracamy argument jako lista
                     messages.error(request, form.errors[value].as_ul())
-        else:
-            form = PetUpdateForm(instance=profile)
-            context={'form':form}
+                    
+        form = PetUpdateForm(instance=profile)
+        context={'form':form}
         return render(request, 'pets/edit_pet.html', context)
-        #     messages.success(request, 'Pomyślnie usunięto zwierzę')
     else:
         messages.error(request, 'Nie masz dostępu do tej strony')
         return redirect('/')
@@ -135,7 +136,7 @@ def lost_pets(request):
     # return render(request, "pets/lost_pets.html", context)
     listing = PetProfile.objects.filter(is_lost=True).order_by('-add_date')
     listing_filter = LostPetFilters(request.GET, queryset=listing)
-    return paginate(request, listing_filter, 'pets/lost_pets.html', 4, True )
+    return paginate(request, listing_filter, 'pets/lost_pets.html', 5, True )
 
 
     #------------------------------------------------------

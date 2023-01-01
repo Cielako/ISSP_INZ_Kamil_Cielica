@@ -69,18 +69,18 @@ class UserRegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
         max_length=35, 
-        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jan'}), 
         required=False)
     
     last_name = forms.CharField(
         max_length=35, 
-        widget=forms.TextInput(attrs={'class': 'form-control'}), 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Kowalski'}), 
         required=False)
     
     phone = PhoneNumberField(
         widget=PhoneNumberPrefixWidget(
             initial="PL", 
-            attrs={'class': 'form-control'}), required=False)
+            attrs={'class': 'form-control', 'type': 'tel', 'placeholder':'123456789'}), required=False)
     
     region = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),

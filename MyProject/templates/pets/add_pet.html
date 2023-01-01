@@ -6,6 +6,11 @@
     <form action="." method=POST enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
+            <label for="image" class="form-label">Zdjęcie</label>
+            {{ form.image }}
+            <img src="{{form.initial.image.url}}" height="500px" width="500px" alt="image" id="image_preview">
+        </div>
+        <div class="mb-3">
             <label for="chip_number" class="form-label">Numer</label>
             {{ form.chip_number }}
         </div>
@@ -20,11 +25,6 @@
         <div class="mb-3">
             <label for="gender" class="form-label">Płeć</label>
             {{ form.gender }}
-        </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Zdjęcie</label>
-            {{ form.image }}
-            <img src="{{form.initial.image.url}}" height="500px" width="500px" alt="image" id="image_preview">
         </div>
         <div class="mb-3">
             <label for="desc" class="form-label">Opis</label>

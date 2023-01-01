@@ -7,7 +7,7 @@
     <H1>Twój profil użytkownika</H1> 
         {% csrf_token %}
     {% block container %}
-        <section id="user-profile" class="rounded border border-5">
+        <section class="profile border rounded border-3 shadow">
             <div id="u-profile-left" class="col-sm-4">
                 <div class="row m-2 p-4">
                     <span class="rounded-circle">
@@ -34,17 +34,18 @@
                 <div class="row m-2">
                     <h6 class="border-bottom p-2">Dane kontaktowe</h6>
                     <div class="col-sm-6 mb-3">
-                        <p class="f-w-600">Telefon</p>
-                        <h6 class="text-muted">{{ request.user.phone }}</h6> 
-                    </div>
-                    <div class="col-sm-6 mb-3">
                         <p class="f-w-600">Województwo:</p>
                         <h6 class="text-muted">{{ request.user.region }}</h6> 
                     </div>
+                    <div class="col-sm-6 mb-3">
+                        <p class="f-w-600">Telefon</p>
+                        <h6 class="text-muted">{{ request.user.phone }}</h6> 
+                    </div>
+                    
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button">Edytuj</a>
-                    <a class="btn btn-primary" href="{%url 'password_change' %}" role="button">Zmień hasło</a>
+                    <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button"><i class="far fa-edit"></i> Edytuj</a>
+                    <a class="btn btn-primary" href="{%url 'password_change' %}" role="button"><i class="fas fa-lock"></i> Zmień hasło</a>
                 </div>
             </div>
         </section>
