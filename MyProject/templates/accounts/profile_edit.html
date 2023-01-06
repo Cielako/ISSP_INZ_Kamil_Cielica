@@ -4,50 +4,51 @@
 
 {% block main %}
     <H1>Edytuj profil właściciela</H1>
-    <sction id="user-edit"class="profile border rounded border-3 shadow ">
-        <form action="" method=POST>
-            {% csrf_token %}
-            <h6 class="border-bottom p-2">Dane osobowe</h6>
-            <div class="row">
-                <div class="col-sm-6 mb-3">
-                    <label for="first_name" class="form-label">Imię</label>
-                    {{ form.first_name }}
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label for="last_name" class="form-label">Nazwisko</label>
-                    {{ form.last_name }}
-                </div>
-            </div>
-            
-            <h6 class="border-bottom p-2">Dane kontaktowe</h6>
-            <div id="contact" class="row d-inline-flex">
-                <div class="half">
-                    <label for="region" class="form-label">Województwo</label>
-                    <div class="input-group col-sm-6 mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i></span>
-                        {{ form.region }}
+    {% block container %}
+        <section class="u-prof-edit border rounded border-3 shadow">
+            <form action="" method=POST>
+                {% csrf_token %}
+                <h6 class="border-bottom p-2">Dane osobowe</h6>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <label for="first_name" class="form-label">Imię</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label for="last_name" class="form-label">Nazwisko</label>
+                        {{ form.last_name }}
                     </div>
                 </div>
-               <div class="half">
-                    <label for="phone" class="form-label">Numer telefonu</label>
-                    <div class="col-sm-6 mb-3 input-group">
+                
+                <h6 class="border-bottom p-2">Dane kontaktowe</h6>
+                <div id="contact" class="row d-inline-flex">
+                    <div class="half">
+                        <label for="region" class="form-label">Województwo</label>
+                        <div class="input-group col-sm-6 mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i></span>
+                            {{ form.region }}
+                        </div>
+                    </div>
+                    <div class="half">
+                            <label for="phone" class="form-label">Numer telefonu</label>
+                            <div class="col-sm-6 mb-3 input-group">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                                {{ form.phone }}
+                            </div>
+                    </div>
+                </div>
+                {% comment %} <div class="row ">
+                    <label for="last_name" class="form-label">Numer telefonu</label>
+                    <div id="phone" class="col-sm-6 mb-3 input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                         {{ form.phone }}
                     </div>
-               </div>
-               
-            </div>
-            {% comment %} <div class="row ">
-                <label for="last_name" class="form-label">Numer telefonu</label>
-                <div id="phone" class="col-sm-6 mb-3 input-group">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
-                    {{ form.phone }}
-                </div>
-            </div> {% endcomment %}
+                </div> {% endcomment %}
 
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Zapisz</button>
-            </div>
-        </form>
-    </sction>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Zapisz</button>
+                </div>
+            </form>
+        </section>
+    {% endblock %}
 {% endblock %}

@@ -27,7 +27,7 @@ class PetRegisterForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices=PetProfile.Gender.choices)
     
-    desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',"rows":5, "cols":20 }),
+    desc = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}),
         max_length=255,
         error_messages = {
                 'max_length':"Wprowadzony opis zwierzęcia jest za długi"
@@ -37,7 +37,9 @@ class PetRegisterForm(forms.ModelForm):
         max_length=255,
         error_messages = {
                 'max_length':"Wprowadzony opis zwierzęcia jest za długi"
-                 })
+                 },
+        required=False),
+        
     is_lost = forms.BooleanField(required=False)
     
     class Meta:

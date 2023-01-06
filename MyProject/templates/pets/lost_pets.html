@@ -4,24 +4,45 @@
 {% block title %}Zaginione zwierzęta{% endblock %}
 
 {% block main %}
+    
+    <section class="filter-container">
+        <H2>Filtry</H2>
         <form action="." method="GET" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="chip_number" class="form-label">Gatunek: </label>
-                {% render_field listing_filter.form.pet_type class="form-control" %}
+            <div class="row">
+                <div class="col-sm-4 mb-3">
+                    <label for="pet_type" class="form-label f-w-600">Gatunek</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-paw"></i></span>
+                        {% render_field listing_filter.form.pet_type class="form-control" %}
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label for="gender" class="form-label f-w-600">Płeć</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                        {% render_field listing_filter.form.gender class="form-control" %}
+                    </div>
+                </div>
+                {% comment %} <div class="mb-3">
+                    <label for="gender" class="form-label">Płeć: </label>
+                    {% render_field listing_filter.form.gender class="form-control" %}
+                </div> {% endcomment %}
+                <div class="col-sm-4 mb-3">
+                    <label for="region" class="form-label f-w-600">Ostatnia lokalizacja</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                        {% render_field listing_filter.form.region class="form-control" %}
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="chip_number" class="form-label">Płeć: </label>
-                {% render_field listing_filter.form.gender class="form-control" %}
-            </div>
-            <div class="mb-3">
-                <label for="chip_number" class="form-label">Województwo: </label>
-                {% render_field listing_filter.form.region class="form-control" %}
-            </div>
-            <button type="submit" class="btn btn-primary">Filtruj</button>
+            
+            <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filtruj</button>
         </form>
+    </section>
+      
 
-    <H1>Lista zaginionych zwierząt:</H1>
+    <H2 class="m-auto">Zaginione Zwierzęta</H2>
     <div id="pets-container">
         {% for item in pet_page_obj %}
             {# Wczytujemy szablon do listowania profili zwierząt #}

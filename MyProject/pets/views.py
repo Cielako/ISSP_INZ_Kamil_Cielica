@@ -50,8 +50,9 @@ def pet_profile(request, chip_number=None, pet_id=None):
     if specific_data:
         return render(request, 'pets/profile.html', context)
     else:
-        messages.error(request, 'Zwierzę o podanym numerze nie istnieje')  
-        return  redirect("/")
+        messages.error(request, 'Zwierzę o podanym numerze nie istnieje')
+        referer = request.META.get("HTTP_REFERER")  
+        return  redirect(referer)
        
 # Dodaje nowe zwierze dla aktualnie zalogowanego użytkowinka    
 def add_pet_profile(request):

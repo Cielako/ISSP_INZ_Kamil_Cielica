@@ -58,8 +58,9 @@ form#search-bar{
 /*--------Main---------*/
 div#main {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     margin: auto;
+    flex-direction: column;
     margin-bottom: 1em;
     width: 80%;
     min-height: 75vh;
@@ -124,6 +125,12 @@ div#pets-container .pet-list .btn{
     margin-top: 1em;
     align-items: center;
 }
+/*----------Lost Pets Filters-----------*/
+.filter-container{
+    margin: auto;
+    width: 80%;
+}
+
 
 /*----------Pagination-----------*/
 nav#pagination {
@@ -134,29 +141,23 @@ nav#pagination {
 /*----------Login/Register Form-----------*/
 
 .cred-form {
+    width: 40%;
+    height: auto;
     margin: auto;
     padding: 1em;
-    width: 40%;
     background-color: rgb(248, 248, 248);
-    /* background-color: #d6dadf; */
-    /* background-color: rgb(233 239 239); */
-    /* box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12); */
 }
 
 .cred-form  form .btn {
     margin-bottom: 1em;
 }
+
 /*----------Profile-----------*/
-section.profile {
-    display: flex;
-    width: auto;
+.profile {
+    display: inline-flex;
+    justify-self: center;
     height: auto;
+    width: auto;
     margin: auto;
 }
 /*----------User Profile-----------*/
@@ -165,13 +166,12 @@ section.profile {
     width: auto;
     height: auto;
     padding: 1em;
-    margin-left: 0px;
     background: #F2994A;
     background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);
     background: linear-gradient(to right, #F2C94C, #F2994A);
 }
 
-#u-profile-left span.rounded-circle{
+#u-profile-left .rounded{
     display: flex;
     justify-content: center;
     padding: 0.4em;
@@ -189,31 +189,51 @@ section.profile {
     width: auto;
     height: auto;
     padding: 1em;
-    margin-right: 0px;
     background-color: rgb(248, 248, 248);    
 }
 
 /*----------User Profile Edit-----------*/
-#user-edit{
-    display: flex;
+.u-prof-edit{
     width: auto;
     height: auto;
     margin: auto;
-    justify-content: center;
     padding: 1em;
     background-color: rgb(248, 248, 248);
-    
 }
-#user-edit #contact {
+.u-prof-edit #contact {
     display: flex;
     flex-direction: row;
 }
 
-#user-edit .half {
+.u-prof-edit .half {
    width: 50%;
 }
+/*----------Pet Profile Edit-----------*/
+.p-prof-edit{
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    margin: auto;
+    background-color: rgb(248, 248, 248);
+}
 
+.p-prof-img-cont{
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+}
 
+.p-prof-edit img{
+    display: flex;
+}
+section.p-prof-edit input{
+    margin-bottom: 1em ;
+}
 
 /*----------Pet Profile-----------*/
 
@@ -238,7 +258,6 @@ section.profile {
     height: auto;
 }
 
-
 #p-profile-right {
     width: auto;
     height: auto;
@@ -246,12 +265,40 @@ section.profile {
     margin-right: 0px;
     background-color: rgb(248, 248, 248);    
 }
+/*----------About-----------*/
+.about{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+    background-color: #0d6efd;
+}
+
+
+.about-left{
+    max-height: 50vh;
+    margin-left: auto;
+}
+.about-left img{
+    max-height: 50vh;
+    margin: auto;
+}
+.about-right{
+    display: flex;
+    justify-content: center;
+    background-color: #8ca0ff;
+    width: auto;
+    height: 50vh;
+    margin: auto;
+}
 
 /*----------Mobile Version-----------*/
 @media only screen and (max-width: 900px) { 
 
     div#main {
-        margin: 1em;
+        display: flex;
+        justify-content: center;
         width: auto;
         min-height: auto;
     }
@@ -278,24 +325,43 @@ section.profile {
     }
 
     .cred-form {
+        margin: 1em;
         width: auto;
     }
 
     section.profile{
+        margin: 1em;
         flex-direction: column;
     }
 
     #p-profile-left div{
         width: auto;
-      height: auto;
+        height: auto;
     }
-
-    #user-edit #contact {
+    .u-prof-edit {
+        margin: 1em;
+    }
+    .u-prof-edit #contact {
         display: flex;
         flex-direction: column;
     }
-    #user-edit .half {
+    .u-prof-edit .half {
         width: auto;
+    }
+
+    .p-prof-edit{
+        margin: 1em;
+        flex-direction: column;
+    }
+
+    .p-prof-img-cont{
+        max-width: 100%;
+    }
+
+    .about{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -316,4 +382,13 @@ section.profile {
 .gen-col-f{
     font-size: 18px;
     color: #ff1493
+}
+
+textarea.form-control{
+    width: 90% !important;
+    margin: auto;
+}
+
+.container {
+    margin: auto;
 }

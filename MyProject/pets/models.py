@@ -21,7 +21,7 @@ def get_profile_image_filepath(self, filename):
     
 
 def get_default_profile_image():
-    return "media/profile_images/def_profile_pic.png"
+    return "profile_images/def_profile_pic.png"
 
     """
     Funkcja usuwa poprzednie zdjęcie przesłane przez użytkownika

@@ -10,14 +10,14 @@
         <section class="profile border rounded border-3 shadow">
             <div id="u-profile-left" class="col-sm-4">
                 <div class="row m-2 p-4">
-                    <span class="rounded-circle">
-                        <i class="fas fa-user"></i>
+                    <span class="rounded">
+                        <i class="fas fa-user-circle"></i>
                     </span>
                     <h3 class="text-center">{{ request.user }}</h3>
                 </div>
             </div>
             
-            <div id="u-profile-right" class="col-sm-8">
+            <div id="u-profile-right" class="col-sm-8 m-auto">
                 <div class="row m-2">
                     <h6 class="border-bottom p-2">Podstawowe informacje</h6>
                     <div class="col-sm-6 mb-3">
@@ -44,7 +44,7 @@
                     
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button"><i class="far fa-edit"></i> Edytuj</a>
+                    <a class="btn btn-primary" href="{%url 'profile_edit' %}" role="button"><i class="fas fa-edit"></i> Edytuj</a>
                     <a class="btn btn-primary" href="{%url 'password_change' %}" role="button"><i class="fas fa-lock"></i> Zmień hasło</a>
                 </div>
             </div>
