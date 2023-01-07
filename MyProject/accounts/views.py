@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .forms import UserRegisterForm, UserUpdateForm, UserPasswordChangeForm
+from .forms import UserLoginForm, UserRegisterForm, UserUpdateForm, UserPasswordChangeForm
 
 
 # Testowa metoda do logowania się na stronie.
@@ -22,19 +22,24 @@ def user_login(request):
         return redirect('/')
     else:
         if request.method == "POST":
-            username = request.POST['username']
-            password = request.POST['password']
-            
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                messages.success(request, ("Zalogowano się jako: " + user.get_username()))
-                login(request, user)
-                return redirect('index')
+            form = UserLoginForm(request=request, data=request.POST)
+            if form.is_valid():
+                user = authenticate(request, 
+                    username = form.cleaned_data['username'], 
+                    password = form.cleaned_data['password'])
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, ("Zalogowano się jako: " + user.get_username()))
+                    return redirect('index')
             else:
-                messages.error(request, ("Podane dane logowania nie są poprawne"))
-                return redirect('login')
+                 for key, error in list(form.errors.items()):
+                    if key == 'captcha' and error[0] == 'To pole jest wymagane.':
+                        messages.error(request, "Musisz poprawnie przejść weryfikację reCAPTCHA.")
+                        continue
+                    messages.error(request, "Podane dane logowania nie są poprawne.") 
         else:
-            return render(request, 'accounts/login.html')
+            form = UserLoginForm()
+        return render(request, 'accounts/login.html', context={'form':form})
     
 # Testowa Metoda do rejestracji - przykład metody z wykorzystaniem forms.py
 def user_register(request):
@@ -49,36 +54,21 @@ def user_register(request):
             form = UserRegisterForm(request.POST)
             if form.is_valid():
                 form.save()
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password1']
-                user = authenticate(username=username, password=password)
+                user = authenticate(request, 
+                    username = form.cleaned_data['username'], 
+                    password = form.cleaned_data['password1'])
                 login(request, user)
                 messages.success(request, 'Rejestracja Przebiegła pomyślnie')
                 return redirect('/')
             else:
-                for value in form.errors:
-                    #print(form.errors[value].as_ul())
-                    messages.error(request, form.errors[value].as_ul())
-                # error_list = [x for x in list(form.errors.values())[0]]
-                # counter = sum('password' in s for s in error_list)
-                # i=0
-                # for error in error_list:
-                #     if "password" in error:
-                #         i+=1
-                #         if i >= counter:
-                #             messages.error(request, 'Twoje hasło nie spełnia wymagań')
-                #     else:
-                #         messages.error(request, error)
-                        
-                        
-                # error_list = [x for x in list(form.errors.values())[0] if x != "password"]
-                # for error in error_list:
-                #     if "password" in error:
-                #         messages.error(request, 'Twoje hasło nie spełnia wymagań')
-                #     else:
-                #         messages.error(request, error)
-
-                # messages.error(request, 'Rejestracja się nie powiodła, podano nieprawidłowe dane')
+                for key, error in list(form.errors.items()):
+                    if key == 'captcha' and error[0] == 'To pole jest wymagane.':
+                        messages.error(request, "Musisz poprawnie przejść weryfikację reCAPTCHA")
+                        continue
+                    messages.error(request, error) 
+                # for value in form.errors:
+                #     print(form.errors[value].as_ul())
+                #     messages.error(request, form.errors[value].as_ul())
         else:
             form = UserRegisterForm()
         return render(request, 'accounts/register.html', context={'form':form})

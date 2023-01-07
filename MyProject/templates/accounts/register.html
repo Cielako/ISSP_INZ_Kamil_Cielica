@@ -26,13 +26,17 @@
                     <li>Twoje hasło nie powinno być zbyt powszechne</li>
                     <li>Twoje hasło nie powinno zawierać samych cyfr</li>
                 </ul>
-                <label for="password2" class="form-label"><h6 class="border-bottom p-2">Powtórz Hasło</h6></label>
+                <label for="password2" class="form-label"><h6 class="border-bottom p-2">Powtórz Hasło *</h6></label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                     {{form.password2}}
                 </div>
                 <p>Oba hasła musza się zgadzać</p>
                 <p><input type="checkbox" required name="terms"> Wyrażam zgodę na przetwarzanie moich danych osobowych <u>Terms and Conditions</u></p>
+                <label for="captcha" class="form-label"><h6 class="border-bottom p-2">Captcha</h6></label>
+                <div class="mb-3 d-flex justify-content-center">
+                    {{form.captcha}}
+                </div>
                 <div class="d-flex justify-content-center" role="group" aria-label="Basic example">
                     <button type="submit" class="btn btn-primary rounded-pill">Zarejestruj się</button>
                 </div>

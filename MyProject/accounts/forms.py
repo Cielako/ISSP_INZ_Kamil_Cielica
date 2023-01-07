@@ -7,9 +7,25 @@ from django.contrib.auth.forms import SetPasswordForm
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
+from captcha.fields import ReCaptchaField 
+from captcha.widgets import ReCaptchaV2Checkbox
 
 # Definiujemy własne formularze coś na wzór tych w html
 
+# Formularz logowania użytkownika
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        required=True,
+        max_length=35, 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'np. test123'}))
+    
+    password = forms.CharField(
+        required=True,
+        max_length=35,  
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}))
+    
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
+    
 # Formularz rejestracji użytkownika
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
@@ -43,6 +59,8 @@ class UserRegisterForm(UserCreationForm):
         max_length=35, 
         required=True, 
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'*******'}))
+    
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     
     class Meta:
         model  = Account

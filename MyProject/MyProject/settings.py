@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'accounts', # moduł uwierzytelnienia użytkowników
     'pets', # moduł profili zwierząt
     'django_filters',
-    'widget_tweaks'
+    'widget_tweaks',
+    'captcha'
     #'accounts.apps.AccountsConfig',
 ]
 
@@ -147,3 +148,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+# Google Recaptcha
+RECAPTCHA_PUBLIC_KEY = '6LeVmtwjAAAAAGgkdEiKN83vriqooJfLbAl-jmNA'
+RECAPTCHA_PRIVATE_KEY = '6LeVmtwjAAAAAJfKonbGS5tOy2icM8PBcjAMYSXa'
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
