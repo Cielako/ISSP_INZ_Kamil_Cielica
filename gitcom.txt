@@ -2,12 +2,19 @@
 git status - wyświetla obecnie śledzone pliki
 git reset - resetuje śledzenie plików
 git log --oneline - listowanie zmian
+
 git checkout - b NAZWA - tworzymy nowego brancha (gałaź) NAZWA
 git checkout NAZWA - przełączamy obecnego brancha na NAZWA
 git branch -a  - wszystkie branche projektu nawet te z repozytorium zdalnego
 git branch -m "NAZWA2" - zmiana nazwy obecnego brancha na NAZWA2
 git merge NAZWA2 - Łaczymy 2 branche w jeden (PAMIĘTAĆ O POPRAWNYM BRANCHU)
-git branch -d NAZWA2 - usuwamy brancha
+
+# Usuwanie Branchy
+git branch -d NAZWA2 - usuwamy brancha lokalnego
+git push origin --delete NAZWA2 - usuwamy brancha zdalnego
+git fetch --prune - czyści wszystkie usunięte branche
+
+# Wypychanie nowego brancha
 git push -u origin Frontend - wypychanmy nowego brancha
 
 
