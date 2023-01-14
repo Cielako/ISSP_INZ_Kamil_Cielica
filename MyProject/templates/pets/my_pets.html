@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <H1>Lista Twoich zwierząt:</H1>
+    <H1 class="text-center">Twoje zwierzęta</H1>
     
     {% if pet_page_obj == None %}
         <p>Aktualnie nie masz żadnych zwierząt</p>
@@ -42,14 +42,15 @@
                     <section class="pet-list p-2">
                         {# Wczytujemy szablon do listowania profili zwierząt #}
                         {% include 'template_parts/pet_prof_listing.html' %}
-
-                        <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button" ><i class="fas fa-eye"></i> Pokaż</a>
-                        <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button"><i class="fas fa-edit"></i> Edytuj</a>
-                        <!-- Button trigger modal -->
-                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petDeleteModalCenter" id="{{item.id}}">
-                            <i class="far fa-trash-alt"></i> Usuń 
-                        </a>
-                        <br>
+                        <section class="pet-btn-menu">
+                            <a class="btn btn-primary" href="{% url 'pet_profile'%}{{item.id}}" role="button" ><i class="fas fa-eye"></i> Pokaż</a>
+                            <a class="btn btn-primary"  href="{% url 'edit_pet_profile' item.id%}" role="button"><i class="fas fa-edit"></i> Edytuj</a>
+                            <!-- Button trigger modal -->
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#petDeleteModalCenter" id="{{item.id}}">
+                                <i class="far fa-trash-alt"></i> Usuń 
+                            </a>
+                        </section>
+                        
                     </section>
                 {% endblock %}
                 {# Skrypt do przekazywania id usuwanego zwierzęcia #}

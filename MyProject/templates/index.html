@@ -2,4 +2,30 @@
 
 
 {% block title %} Strona Główna {% endblock %}
-
+   
+{% block main %}
+    <H1 class="text-center">Strona Główna</H1>
+    {% block container %}
+        <p>Witaj na stronie bezpieczny zwierzak</p>
+        <div class="statistics">
+            <H2>Statystyki</H2>
+            <div class="stat-container">
+                <div class="stat-box"> 
+                    <i class="fas fa-user fa-7x"></i> 
+                    <H5 class="text-uppercase f-w-600 align-middle ">Aktywne konta</H5>
+                    <p class="f-w-600">{{users}}</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-paw fa-7x"></i>   
+                    <H5 class="text-uppercase f-w-600 align-middle">Zarejestrowanych zwierząt</H5>
+                    <p class="f-w-600">{{pets}}</p>
+                </div>
+                <div class="stat-box">  
+                    <i class="fas fa-search-location fa-7x rounded"></i>
+                    <H5 class="text-uppercase f-w-600 align-middle">zaginionych zwierząt</H5>
+                    <p>{{lost_pets}}</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

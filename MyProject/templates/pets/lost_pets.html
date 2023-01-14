@@ -4,7 +4,7 @@
 {% block title %}Zaginione zwierzęta{% endblock %}
 
 {% block main %}
-    
+    <H1 class="text-center">Zaginione zwierzęta</H1>
     <section class="filter-container">
         <H2>Filtry</H2>
         <form action="." method="GET" enctype="multipart/form-data">
@@ -41,8 +41,6 @@
         </form>
     </section>
       
-
-    <H2 class="m-auto">Zaginione Zwierzęta</H2>
     <div id="pets-container">
         {% for item in pet_page_obj %}
             {# Wczytujemy szablon do listowania profili zwierząt #}

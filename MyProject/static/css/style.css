@@ -79,6 +79,52 @@ div#main form{
     margin: 1em;
 }
 
+/*----------homepage-----------*/
+div.statistics {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width:auto;
+}
+div.stat-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: auto;
+    width:auto;
+}
+
+div.stat-box {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em;  
+    padding: 0 1rem 1rem;
+    margin-top: 3rem;
+    border-radius: 2rem ;
+    border: 2px solid white;
+    width: 22em;
+    background-color: rgb(235 235 235);
+    box-shadow: 
+    rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+div.stat-box:hover{
+    border: 2px solid black;
+}
+
+div.stat-box svg{
+    margin-top: 0.1em; 
+    margin-bottom: 0.1em; 
+}
+
+div.stat-box p{
+    text-decoration: wavy;
+    font-weight: 900;
+    font-size: 2rem;
+}
 
 /*--------my-pets & lost-pets--------*/
 div#pets-container {
@@ -86,23 +132,28 @@ div#pets-container {
     flex-direction: row;
     justify-content: center;
     margin: auto;
-    width:auto
+    width:100%;
     /*background-color: rgb(177, 207, 8);*/
 }
-
+div#pets-container .pet-btn-menu{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
 div#pets-container .pet-list{
     display: block;
     cursor: pointer;
-    width: auto;
+    width: 19em;
     height: auto;
     margin: 1em;
+    border: 1px solid white;
     border-radius: 1em;
     background-color: rgb(235 235 235); /*rgb(233 239 239);*/ /*Wcześniej był rgb(208, 216, 216);*/
     box-shadow: 
     rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    
 }
+
 
 div#pets-container .pet-list img{
     display: block;
@@ -267,23 +318,34 @@ section.p-prof-edit input{
 }
 /*----------About-----------*/
 .about{
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     height: 50vh;
     width: 100%;
     background-color: #0d6efd;
 }
-
-
-.about-left{
-    max-height: 50vh;
-    margin-left: auto;
-}
 .about-left img{
     max-height: 50vh;
     margin: auto;
+    visibility: hidden;
 }
+.about-top {
+    background-color: #6c757d;
+}
+.about-center{
+    display: flex;
+    flex-direction: row;
+}
+.about-left{
+    display: flex;
+    justify-content: center;
+    background-color: #e7e9f3;
+    width: auto;
+    height: 50vh;
+    margin: auto;
+}
+
 .about-right{
     display: flex;
     justify-content: center;
@@ -293,6 +355,9 @@ section.p-prof-edit input{
     margin: auto;
 }
 
+.about-bottom {
+    background-color: #6c757d;
+}
 /*----------Mobile Version-----------*/
 @media only screen and (max-width: 900px) { 
 
@@ -302,11 +367,25 @@ section.p-prof-edit input{
         width: auto;
         min-height: auto;
     }
+
     form#search-bar {
         width: 90%;
     }
+
     .alert {
         width: 90%;
+    }
+
+    div.statistics{
+        margin: auto;
+    }
+
+    div.stat-box {
+        width: 20em ;
+    }
+    
+    div.stat-container{
+        flex-direction: column;
     }
 
     div#pets-container {

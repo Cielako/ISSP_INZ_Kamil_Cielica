@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
 {%load  static %}
 
-{% block title %} O nas {% endblock %}
+{% block title %} O stronie {% endblock %}
 
 {% block main %}
+    <H1 class="text-center">O stronie</H1>
             {% block container %}
                 <section class="container">
-                    <section class="about ">
-                        <div class="about-left col-sm-6 mb-3">
-                            <img src={% static 'images/about_2.jpg' %} class="img-fluid" alt="" srcset="">
+                    <section class="about">
+                        <div class="about-top">
+                            <H4>Czym jest tak właściwie ta strona ?</H4>
                         </div>
-                        <div class="about-right col-sm-6 mb-3">
-                            lorem iposahjasfhnajksasnjfasfknaskanasjknkansknknfaska
+                        <div class="about-center">
+                            <div class="about-left ">
+                                {% comment %} <img src={% static 'images/about_2.jpg' %} class="img-fluid" alt="" srcset=""> {% endcomment %}
+                            </div>
+                            <div class="about-right">
+                             
+                            </div>
+                        </div>
+                        <div class="about-bottom">
+                            <H4>Czym jest tak właściwie ta strona ?</H4>
                         </div>
                     </section>
                 </section>
