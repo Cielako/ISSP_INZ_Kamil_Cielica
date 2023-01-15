@@ -3,7 +3,7 @@
 {% block title %}Profil zwierzęcia{% endblock %}
 
 {% block main %}
-    <H1 class="text-center">Profil zwierzęcia</H1>
+    <H1 class="text-center m-auto">Profil zwierzęcia</H1>
     {% block container %}
         {% for item in all %}
             <section class=" profile rounded border border-3 shadow">
@@ -30,11 +30,11 @@
                             <i class="fas fa-venus-mars"></i>
                             <label for="gender" class="form-label f-w-600">Płeć</label>
                             <h6 class="text-muted">
-                                {%if item.gender == 'Samiec' %}
+                                {{item.gender}}{%if item.gender == 'Samiec' %}
                                     <i class="fa fa-mars gen-col-m"></i> 
                                 {% elif item.gender == 'Samica'%}
                                     <i class="fa fa-venus gen-col-f"></i> 
-                                {% endif %}{{item.gender}}
+                                {% endif %}
                             </h6> 
                         </div>
                         <div class="col-sm-6 mb-3">

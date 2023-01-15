@@ -4,25 +4,44 @@
 {% block title %} O stronie {% endblock %}
 
 {% block main %}
-    <H1 class="text-center">O stronie</H1>
+    <H1 class="text-center m-auto">O stronie</H1>
             {% block container %}
-                <section class="container">
-                    <section class="about">
-                        <div class="about-top">
-                            <H4>Czym jest tak właściwie ta strona ?</H4>
+                <section class="about">
+                    <div class="about-top rounded">
+                        <article class="about-art">
+                            <H5>Strona powstała w ramach pracy inżynynierskiej wykonanej pod kierunkiem <b>dr. hab. inż. Artura Barasińskiego</b>  w <b>Instytucie Fizyki Teoretycznej UWr Wrocław</b>.</H5>
+                            <i class="fas fa-university"></i>
+                        </article>
+                    </div>
+                    <div class="about-center ">
+                        <div class="about-left rounded">
+                            <img src={% static 'images/about_2.jpg' %} class="img-fluid rounded" alt="" srcset="">
                         </div>
-                        <div class="about-center">
-                            <div class="about-left ">
-                                {% comment %} <img src={% static 'images/about_2.jpg' %} class="img-fluid" alt="" srcset=""> {% endcomment %}
-                            </div>
-                            <div class="about-right">
-                             
-                            </div>
+                        <div class="about-right rounded">
+                            <article class="about-art">
+                                <H5>Za cel obrano utworzenie witryny internetowej, która umożliwiałaby rejestrację zwierząt w bazie danych. Rejestracja Skutkowałaby utworzeniem profilu danego zwierzęcia.</H5>
+                                <H6>Uwzględniamy tutaj między innymi:</H6>
+                                <ul>   
+                                    <li>numer mikroczipu</li>
+                                    <li>imię zwierzęcia</li>
+                                    <li>zdjęcie</li>
+                                    <li>cechy szczególne (opis)</li>
+                                    <li>dane właściciela</li>
+                                </ul>
+                                <i class="fas fa-bullseye"></i>
+                            </article>
                         </div>
-                        <div class="about-bottom">
-                            <H4>Czym jest tak właściwie ta strona ?</H4>
-                        </div>
-                    </section>
+                    </div>
+                    <div class="about-bottom rounded">
+                        <article class="about-art">
+                            <H5>Strona ma być swego rodzaju zabezpieczeniem dla właściciela danego zwierzęcia, w
+                                razie zaginięcia właściciel może ustawić w profilu swojego pupila status zagniniony.</H5> 
+                                <H5>Strona będzie ogólnodostępna dla każdego bez wyjątku, przez co mogłaby znacznie pomóc w odnajdywaniu właścicieli zwierząt, chociażby
+                                schroniskom - dane schronisko mogłoby w bardzo prosty sposób zlokalizować właściciela. </H5>
+                                <H5>Platforma ma być w pełni darmową alternatywą płatnych rozwiązań które możemy znaleźć obecnie w internecie.</H5>
+                                <i class="fas fa-shield-alt"></i>
+                            </article>
+                    </div>
                 </section>
             {% endblock %} 
 {% endblock %}

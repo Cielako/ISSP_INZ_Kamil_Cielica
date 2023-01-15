@@ -321,42 +321,71 @@ section.p-prof-edit input{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50vh;
-    width: 100%;
-    background-color: #0d6efd;
-}
-.about-left img{
-    max-height: 50vh;
+    width: 80%;
     margin: auto;
-    visibility: hidden;
 }
+article.about-art {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    margin: 3em;
+}
+article.about-art svg {
+   margin: auto;
+   font-size: 5.5em;
+   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+/* article.about-art H5{
+    text-shadow: #e0e0e0 1px 1px 0;
+} */
 .about-top {
-    background-color: #6c757d;
+    background-color: #f4a900;
+    width: auto;
+    height: auto;
+    margin: 1em;
 }
 .about-center{
     display: flex;
     flex-direction: row;
+    height: auto;
+    margin: 1em;
 }
+
+.about-left img{
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    border: 2px solid lightgray;
+    margin: auto;
+    height: 50vh;
+}
+
 .about-left{
     display: flex;
     justify-content: center;
-    background-color: #e7e9f3;
-    width: auto;
-    height: 50vh;
+
+    background-color: #e2ece9;
+    width: 50%;
+    height: 60vh;
     margin: auto;
 }
 
 .about-right{
-    display: flex;
-    justify-content: center;
-    background-color: #8ca0ff;
-    width: auto;
-    height: 50vh;
+    background-color: #0ada9b;
+    width: 50%;
+    height: 60vh;
     margin: auto;
 }
 
 .about-bottom {
-    background-color: #6c757d;
+    background-color: #df4f0c;
+    height: auto;
+    margin: 1em;
 }
 /*----------Mobile Version-----------*/
 @media only screen and (max-width: 900px) { 
@@ -437,10 +466,50 @@ section.p-prof-edit input{
         max-width: 100%;
     }
 
-    .about{
+    article.about-art {
         display: flex;
+        justify-items: center;
         flex-direction: column;
-        justify-content: center;
+        margin: 1.75em;
+    }
+
+    article.about-art svg {
+        font-size: 2.5em;
+        margin-top: 0;
+    }
+
+    .about{
+        width: 100%;
+    }
+
+    .about-top {
+        height: auto;
+    }
+
+    .about-center{
+        display: flexbox;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .about-left{
+        margin-bottom: 1em;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-left img{
+        margin: 2em;
+    }
+    
+    .about-right{
+        margin-top: 1em;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-bottom {
+        height: auto;
     }
 }
 
@@ -470,4 +539,8 @@ textarea.form-control{
 
 .container {
     margin: auto;
+}
+
+H1 {
+    text-transform: uppercase;
 }
