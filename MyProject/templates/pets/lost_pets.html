@@ -37,7 +37,10 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filtruj</button>
+            <div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-primary m-1"><i class="fas fa-filter"></i> Filtruj</button>
+                <a class="btn btn-danger m-1" href="{% url 'lost_pets'%}" role="button" ><i class="fas fa-times-circle"></i> Wyczyść filtry</a>
+            </div>
         </form>
     </section>
       

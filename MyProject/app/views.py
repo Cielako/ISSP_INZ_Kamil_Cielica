@@ -21,16 +21,6 @@ def index(request):
     }
     return render(request,'index.html', context=context)
 
-# Zwracamy informacje o danym profilu 
-# def profile(request):
-#     req_data = request.POST.get('check_number', None)
-#     specific_data = Profile.objects.filter(chip_number=req_data).values()
-#     if specific_data is not Empty:
-#         return render(request, 'profile.html', {'all': specific_data})
-#     else:
-#         return render(request, 'profile.html', {'all': ['Nie ma takiego zwierzęcia :(']})  
-    
-
 def about(request):
     return render(request, 'about.html')
 
