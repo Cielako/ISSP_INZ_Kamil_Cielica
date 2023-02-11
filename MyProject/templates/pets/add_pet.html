@@ -8,96 +8,77 @@
         <section class="p-prof-edit border rounded border-3 shadow">
             <form action="" method=POST enctype="multipart/form-data">
                 {% csrf_token %}
-                {% comment %} <h6 class="border-bottom p-2">Zdjęcie profilowe</h6> {% endcomment %}
                 <div class="row m-2">
                     <h6 class="border-bottom p-2">Zdjęcie profilowe</h6>
                     <div class="p-prof-img-cont">
                         <img src="{{form.initial.image.url}}" class="img-fluid" alt="image" id="image_preview">
                         <input type="file" name="{{form.image.name}}" class="form-control m-2" accept="image/*" id="id_image">
-                        {% comment %} {{form.image}} {% endcomment %}
                     </div>
                 </div> 
                 
-                {% comment %} <h6 class="border-bottom p-2">Podstawowe informacje</h6> {% endcomment %}
+              
                 <div class="row m-2">
                     <h6 class="border-bottom p-2">Podstawowe informacje</h6>
                     <div class="col-sm-6 mb-3">
                         <i class="fas fa-microchip"></i>
-                        <label for="chip_number" class="form-label f-w-600">Mikroczip</label>
+                        <label for="chip_number" class="form-label f-w-600">
+                            Mikroczip
+                        </label>
                         {{ form.chip_number }}
                     </div>
                     <div class="col-sm-6 mb-3">
                         <i class="fas fa-signature"></i>
-                        <label for="pet_name" class="form-label f-w-600">Imię</label>
+                        <label for="pet_name" class="form-label f-w-600">
+                            Imię
+                        </label>
                         {{ form.pet_name }}
                     </div>
                 </div>
                 <div class="row m-2">
                     <div class="col-sm-6 mb-3">
                         <i class="fas fa-venus-mars"></i>
-                        <label for="gender" class="form-label f-w-600">Płeć</label>
+                        <label for="gender" class="form-label f-w-600">
+                            Płeć
+                        </label>
                         {{ form.gender }}
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="pet_type" class="form-label f-w-600">Gatunek</label>
+                        <label for="pet_type" class="form-label f-w-600">
+                            Gatunek
+                        </label>
                         {{ form.pet_type }}
                     </div>
                 </div>
-                {% comment %} <h6 class="border-bottom p-2">Opis</h6> {% endcomment %}
+            
                 <div class="row m-2">
-                    <h6 class="border-bottom p-2">Opis</h6>  
+                    <h6 class="border-bottom p-2">
+                        Opis
+                    </h6>  
                 
                     <div class="col m-auto">
                         {{ form.desc }}
                     </div>
                 </div>
-                {% comment %} <h6 class="border-bottom p-2">Status</h6> {% endcomment %}
+               
                 <div class="row m-2">
-                    <h6 class="border-bottom p-2">Status</h6>
+                    <h6 class="border-bottom p-2">
+                        Status
+                    </h6>
                     <div class="col-sm-6 mb-3">
-                        <label for="desc" class="form-label f-w-600">Zaginął</label>
+                        <label for="desc" class="form-label f-w-600">
+                            Zaginął
+                        </label>
                         {{ form.is_lost }}
                     </div>
                 </div>
-                {% comment %} <h6 class="border-bottom p-2">Ostatnia lokalizacja</h6> {% endcomment %}
+              
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Zarejestruj zwierze</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Zarejestruj zwierze
+                    </button>
                 </div>
             </form>
         </section>
-        {% comment %} <form action="." method=POST enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="image" class="form-label">Zdjęcie</label>
-                {{ form.image }}
-                <img src="{{form.initial.image.url}}" height="500px" width="500px" alt="image" id="image_preview">
-            </div>
-            <div class="mb-3">
-                <label for="chip_number" class="form-label">Numer</label>
-                {{ form.chip_number }}
-            </div>
-            <div class="mb-3">
-                <label for="pet_type" class="form-label">Gatunek</label>
-                {{ form.pet_type }}
-            </div>
-            <div class="mb-3">
-                <label for="pet_name" class="form-label">Imię</label>
-                {{ form.pet_name }}
-            </div>
-            <div class="mb-3">
-                <label for="gender" class="form-label">Płeć</label>
-                {{ form.gender }}
-            </div>
-            <div class="mb-3">
-                <label for="desc" class="form-label">Opis</label>
-                {{ form.desc }}
-            </div>
-            <div class="mb-3">
-                <label for="desc" class="form-label">Zaginął</label>
-                {{ form.is_lost }}
-            </div>
-            <button type="submit" class="btn btn-primary">Zarejestruj zwierze</button>
-        </form> {% endcomment %}
     {% endblock %}
     <script>
         const imgInput = document.querySelector("#id_image")
