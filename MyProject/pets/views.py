@@ -84,15 +84,11 @@ def edit_pet_profile(request, pet_id):
     if request.user.is_authenticated and request.user.id == profile.owner_id:
         if request.method == 'POST':
             form = PetUpdateForm(request.POST, request.FILES, instance=profile)
-            # if 'image' in form.changed_data:
-            #     clean_old_image(profile.image)
-                
             if form.is_valid() :
                 if 'image' in form.changed_data:
                     clean_old_image(profile.image)
                 form.save()
                 messages.success(request, 'Pomyślnie edytowano zwierzę')
-                # return redirect(request.META.get('HTTP_REFERER'))
                 return redirect('pet_profile', profile.pk)
             else:
                 #messages.error(request, 'Wystąpił błąd przy edycji profilu.')
@@ -123,37 +119,6 @@ def del_pet_profile(request, pet_id=None):
 
 # do poprawy paginacja i filtrowanie
 def lost_pets(request):
-    #-----------------------------------------------------
-    # context = {}
-    # listing = PetProfile.objects.filter(is_lost=True)
-    # listing_filter = LostPetFilters(request.GET, queryset=listing)
-   
-    # context['listing_filter'] = listing_filter
-    
-    # pag_filtered_pets = Paginator(listing_filter.qs, 2)
-    # page_number = request.GET.get('page')
-    # pet_page_obj = pag_filtered_pets.get_page(page_number)
-    # context['pet_page_obj'] = pet_page_obj
-    # return render(request, "pets/lost_pets.html", context)
     listing = PetProfile.objects.filter(is_lost=True).order_by('-add_date')
     listing_filter = LostPetFilters(request.GET, queryset=listing)
     return paginate(request, listing_filter, 'pets/lost_pets.html', 5, True )
-
-
-    #------------------------------------------------------
-    # listing = PetProfile.objects.filter(is_lost=True)
-    # listing_filter = LostPetFilters(request.GET, queryset=listing)
-    # p = Paginator(listing_filter.qs, 1) 
-    # page = request.GET.get('page')
-    
-    # try: 
-    #     pets = p.page(page)
-    # except PageNotInteger:
-    #     pets = p.page(p.num_pages)
-    # listing_filter = LostPetFilters(request.GET, queryset=listing)
-    # context = {
-    #     'listing_filter' : pets
-    # }
-    # return render(request, "pets/lost_pets.html", context)
-
-

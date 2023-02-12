@@ -39,16 +39,3 @@ def paginate(request:HttpRequest, listing, template:str='index.html', psize:int=
     else:
         return render(request, template, context)
     
-    # [---LOST_PETS OLD VIEW---]
-    
-    # context = {}
-    # listing = PetProfile.objects.filter(is_lost=True)
-    # listing_filter = LostPetFilters(request.GET, queryset=listing)
-   
-    # context['listing_filter'] = listing_filter
-    
-    # pag_filtered_pets = Paginator(listing_filter.qs, 2)
-    # page_number = request.GET.get('page')
-    # pet_page_obj = pag_filtered_pets.get_page(page_number)
-    # context['pet_page_obj'] = pet_page_obj
-    # return render(request, "pet/lost_pets.html", context)

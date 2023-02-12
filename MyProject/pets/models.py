@@ -23,10 +23,11 @@ def get_profile_image_filepath(self, filename):
 def get_default_profile_image():
     return "profile_images/def_profile_pic.png"
 
-    """
-    Funkcja usuwa poprzednie zdjęcie przesłane przez użytkownika
-    """
+   
 def clean_old_image(instance):
+    """
+        Funkcja usuwa poprzednie zdjęcie przesłane przez użytkownika
+    """
     try:
         path = instance.path
         print("Pomyślnie Edytowano zdjęcie profilu")
