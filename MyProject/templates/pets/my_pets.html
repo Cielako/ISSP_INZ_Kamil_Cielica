@@ -58,7 +58,8 @@
         {% endfor %}
     </div>
     <script type="text/javascript">
-        document.getElementById("petDeleteModalCenter").addEventListener('show.bs.modal', (e) => {
+        document.getElementById("petDeleteModalCenter").addEventListener('show.bs.modal', 
+        (e) => {
             console.log("id zwierzęcia:" + e.relatedTarget.id)
             var link = "{% url 'del_pet_profile'%}?pet_id=" +  e.relatedTarget.id;
             document.getElementById("delete").setAttribute("href", link);

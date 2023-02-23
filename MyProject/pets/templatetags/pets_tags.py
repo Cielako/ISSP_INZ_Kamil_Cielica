@@ -3,25 +3,25 @@ from django import template
 register = template.Library()
 
 @register.simple_tag
-def filter_url(value, field_name, urlencode=None):
-    url ='?{}={}'.format(field_name, value)
+def filter_url(val, f_name, url_encode=None):
+    url ='?{}={}'.format(f_name, val)
     
-    if urlencode:
-        querystring = urlencode.split('&')
-        filtered_querystring = filter(lambda p: p.split('=')[0]!=field_name, querystring)
-        encoded_querystring = '&'.join(filtered_querystring)
-        url = '{}&{}'.format(url, encoded_querystring)
+    if url_encode:
+        query = url_encode.split('&')
+        query_filtered = filter(lambda p: p.split('=')[0]!=f_name, query)
+        query_encoded = '&'.join(query_filtered)
+        url = '{}&{}'.format(url, query_encoded)
     return url
 
 # final url : ?page=1&pet_type=Gryzoń&gender=Samica&region=Dolnośląskie
 # url = ?page=1
-# querystring = page=2&pet_type=&gender=Saminca&region=Dolnośląskie
-# filtered_querystring = ['pet_type=', 'gender=', 'region=']
-# encoded_querystring = pet_type=&gender=Saminca&region=Dolnośląskie
+# query = page=2&pet_type=&gender=Saminca&region=Dolnośląskie
+# query_filtered = ['pet_type=', 'gender=', 'region=']
+# query_encoded = pet_type=&gender=Saminca&region=Dolnośląskie
 # url = {?page=1}{pet_type=&,gender=Saminca&region=Dolnośląskie}
 
 #         print(f"Main  url:{url}")
-#         print(f"Query string:{querystring}")
-#         print(f"Filtered Query string:{filtered_querystring}")
-#         print(f"Encoded Query string:{encoded_querystring}")
+#         print(f"Query string:{query}")
+#         print(f"Filtered Query string:{query_filtered}")
+#         print(f"Encoded Query string:{query_encoded}")
 #         print(f"Final url :{url}")

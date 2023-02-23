@@ -76,10 +76,10 @@
         </section>
     {% endblock %}
     <script>
-        const imgInput = document.querySelector("#id_image")
-        const displayImg = document.querySelector("#image_preview")
+        const imgInput = document.getElementById("id_image")
+        const displayImg = document.getElementById("image_preview")
         imgInput.addEventListener('change',
-        (event)=>{
+        (e)=>{
             const imgObject = event.target.files[0]
             displayImg.src = URL.createObjectURL(imgObject)})
     </script>
