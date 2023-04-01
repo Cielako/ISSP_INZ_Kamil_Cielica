@@ -68,10 +68,12 @@ def add_pet_profile(request):
                 messages.success(request, 'Dodano nowe zwierzę')
                 return redirect('my_pets')
             else:
-                 messages.error(request, 'Wystąpił błąd przy dodawaniu zwierzęcia')
-        else:
-            form = PetRegisterForm()
-            context={'form':form}
+                for value in form.errors:
+                    # Zwracamy argument jako lista
+                    messages.error(request, form.errors[value].as_ul())
+       
+        form = PetRegisterForm()
+        context={'form':form}
         return render(request, 'pets/add_pet.html', context)    
     else:
         messages.error(request, 'Nie możesz zarejestrować zwierzęcia, musisz być zalogowany.')

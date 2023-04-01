@@ -27,16 +27,16 @@ def user_login(request):
                 user = authenticate(request, 
                     username = form.cleaned_data['username'], 
                     password = form.cleaned_data['password'])
-                if user is not None:
+                if user is not None and user.is_active:
                     login(request, user)
                     messages.success(request, ("Zalogowano się jako: " + user.get_username()))
                     return redirect('index')
             else:
-                 for key, error in list(form.errors.items()):
+                for key, error in list(form.errors.items()):
                     if key == 'captcha' and error[0] == 'To pole jest wymagane.':
                         messages.error(request, "Musisz poprawnie przejść weryfikację reCAPTCHA.")
                         continue
-                    messages.error(request, "Podane dane logowania nie są poprawne.") 
+                messages.error(request, "Podane dane logowania nie są poprawne.") 
         else:
             form = UserLoginForm()
         return render(request, 'accounts/login.html', context={'form':form})
